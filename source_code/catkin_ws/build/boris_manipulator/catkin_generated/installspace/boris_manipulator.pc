@@ -1,0 +1,8 @@
+prefix=/home/vinay/master_thesis/message_passing/code_repo/Boris_manipulator/source_code/catkin_ws/install
+
+Name: boris_manipulator
+Description: Description of boris_manipulator
+Version: 0.0.0
+Cflags: -I${prefix}/include
+Libs: -L${prefix}/lib 
+Requires: 

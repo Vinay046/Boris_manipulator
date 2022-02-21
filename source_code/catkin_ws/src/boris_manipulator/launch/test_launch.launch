@@ -1,0 +1,4 @@
+<launch>
+  <node name="multiplier_service" pkg="boris_manipulator" type="server.py" output ="screen"/>
+  <node name="client_node" pkg="boris_manipulator" type="client.py" output ="screen"/>
+</launch>

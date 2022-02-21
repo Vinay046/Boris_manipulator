@@ -1,0 +1,2 @@
+boris_manipulator
+-DCATKIN_DEVEL_PREFIX=/home/vinay/master_thesis/message_passing/code_repo/Boris_manipulator/source_code/catkin_ws/devel -DCMAKE_INSTALL_PREFIX=/home/vinay/master_thesis/message_passing/code_repo/Boris_manipulator/source_code/catkin_ws/install -G Unix Makefiles
