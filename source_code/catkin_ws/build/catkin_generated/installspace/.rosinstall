@@ -1,2 +1,2 @@
 - setup-file:
-    local-name: /home/vinay/master_thesis/message_passing/code_repo/Boris_manipulator/source_code/catkin_ws/install/setup.sh
+    local-name: /home/vinay/Project/Boris_manipulator/source_code/catkin_ws/install/setup.sh

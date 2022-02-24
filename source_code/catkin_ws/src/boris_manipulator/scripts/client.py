@@ -24,7 +24,7 @@ if __name__ == '__main__':
 	# while not rospy.is_shutdown():	
 	laser_position_old = localizationResponse()
 	laser_position_old = laser_localization()
-	input('press enter to continue')
+	input('press enter to continue the execution')
 	laser_position_new = localizationResponse()
 	laser_position_new = laser_localization()
 	orientation = math.degrees(math.atan((laser_position_old.position_x - laser_position_new.position_x)/(laser_position_old.position_y-laser_position_new.position_y)))

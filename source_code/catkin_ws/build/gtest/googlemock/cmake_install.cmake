@@ -2,7 +2,7 @@
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/home/vinay/master_thesis/message_passing/code_repo/Boris_manipulator/source_code/catkin_ws/install")
+  set(CMAKE_INSTALL_PREFIX "/home/vinay/Project/Boris_manipulator/source_code/catkin_ws/install")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -39,7 +39,7 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/home/vinay/master_thesis/message_passing/code_repo/Boris_manipulator/source_code/catkin_ws/build/gtest/googletest/cmake_install.cmake")
+  include("/home/vinay/Project/Boris_manipulator/source_code/catkin_ws/build/gtest/googletest/cmake_install.cmake")
 
 endif()
 

@@ -1,8 +1,8 @@
-# Install script for directory: /home/vinay/master_thesis/message_passing/code_repo/Boris_manipulator/source_code/catkin_ws/src/boris_manipulator
+# Install script for directory: /home/vinay/Project/Boris_manipulator/source_code/catkin_ws/src/boris_manipulator
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/home/vinay/master_thesis/message_passing/code_repo/Boris_manipulator/source_code/catkin_ws/install")
+  set(CMAKE_INSTALL_PREFIX "/home/vinay/Project/Boris_manipulator/source_code/catkin_ws/install")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -38,61 +38,61 @@ if(NOT DEFINED CMAKE_CROSSCOMPILING)
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/boris_manipulator/srv" TYPE FILE FILES "/home/vinay/master_thesis/message_passing/code_repo/Boris_manipulator/source_code/catkin_ws/src/boris_manipulator/srv/localization.srv")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/boris_manipulator/srv" TYPE FILE FILES "/home/vinay/Project/Boris_manipulator/source_code/catkin_ws/src/boris_manipulator/srv/localization.srv")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/boris_manipulator/cmake" TYPE FILE FILES "/home/vinay/master_thesis/message_passing/code_repo/Boris_manipulator/source_code/catkin_ws/build/boris_manipulator/catkin_generated/installspace/boris_manipulator-msg-paths.cmake")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/boris_manipulator/cmake" TYPE FILE FILES "/home/vinay/Project/Boris_manipulator/source_code/catkin_ws/build/boris_manipulator/catkin_generated/installspace/boris_manipulator-msg-paths.cmake")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include" TYPE DIRECTORY FILES "/home/vinay/master_thesis/message_passing/code_repo/Boris_manipulator/source_code/catkin_ws/devel/include/boris_manipulator")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include" TYPE DIRECTORY FILES "/home/vinay/Project/Boris_manipulator/source_code/catkin_ws/devel/include/boris_manipulator")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/roseus/ros" TYPE DIRECTORY FILES "/home/vinay/master_thesis/message_passing/code_repo/Boris_manipulator/source_code/catkin_ws/devel/share/roseus/ros/boris_manipulator")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/roseus/ros" TYPE DIRECTORY FILES "/home/vinay/Project/Boris_manipulator/source_code/catkin_ws/devel/share/roseus/ros/boris_manipulator")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/common-lisp/ros" TYPE DIRECTORY FILES "/home/vinay/master_thesis/message_passing/code_repo/Boris_manipulator/source_code/catkin_ws/devel/share/common-lisp/ros/boris_manipulator")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/common-lisp/ros" TYPE DIRECTORY FILES "/home/vinay/Project/Boris_manipulator/source_code/catkin_ws/devel/share/common-lisp/ros/boris_manipulator")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/gennodejs/ros" TYPE DIRECTORY FILES "/home/vinay/master_thesis/message_passing/code_repo/Boris_manipulator/source_code/catkin_ws/devel/share/gennodejs/ros/boris_manipulator")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/gennodejs/ros" TYPE DIRECTORY FILES "/home/vinay/Project/Boris_manipulator/source_code/catkin_ws/devel/share/gennodejs/ros/boris_manipulator")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  execute_process(COMMAND "/usr/bin/python3" -m compileall "/home/vinay/master_thesis/message_passing/code_repo/Boris_manipulator/source_code/catkin_ws/devel/lib/python3/dist-packages/boris_manipulator")
+  execute_process(COMMAND "/usr/bin/python3" -m compileall "/home/vinay/Project/Boris_manipulator/source_code/catkin_ws/devel/lib/python3/dist-packages/boris_manipulator")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/python3/dist-packages" TYPE DIRECTORY FILES "/home/vinay/master_thesis/message_passing/code_repo/Boris_manipulator/source_code/catkin_ws/devel/lib/python3/dist-packages/boris_manipulator")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/python3/dist-packages" TYPE DIRECTORY FILES "/home/vinay/Project/Boris_manipulator/source_code/catkin_ws/devel/lib/python3/dist-packages/boris_manipulator")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/vinay/master_thesis/message_passing/code_repo/Boris_manipulator/source_code/catkin_ws/build/boris_manipulator/catkin_generated/installspace/boris_manipulator.pc")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/vinay/Project/Boris_manipulator/source_code/catkin_ws/build/boris_manipulator/catkin_generated/installspace/boris_manipulator.pc")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/boris_manipulator/cmake" TYPE FILE FILES "/home/vinay/master_thesis/message_passing/code_repo/Boris_manipulator/source_code/catkin_ws/build/boris_manipulator/catkin_generated/installspace/boris_manipulator-msg-extras.cmake")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/boris_manipulator/cmake" TYPE FILE FILES "/home/vinay/Project/Boris_manipulator/source_code/catkin_ws/build/boris_manipulator/catkin_generated/installspace/boris_manipulator-msg-extras.cmake")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/boris_manipulator/cmake" TYPE FILE FILES
-    "/home/vinay/master_thesis/message_passing/code_repo/Boris_manipulator/source_code/catkin_ws/build/boris_manipulator/catkin_generated/installspace/boris_manipulatorConfig.cmake"
-    "/home/vinay/master_thesis/message_passing/code_repo/Boris_manipulator/source_code/catkin_ws/build/boris_manipulator/catkin_generated/installspace/boris_manipulatorConfig-version.cmake"
+    "/home/vinay/Project/Boris_manipulator/source_code/catkin_ws/build/boris_manipulator/catkin_generated/installspace/boris_manipulatorConfig.cmake"
+    "/home/vinay/Project/Boris_manipulator/source_code/catkin_ws/build/boris_manipulator/catkin_generated/installspace/boris_manipulatorConfig-version.cmake"
     )
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/boris_manipulator" TYPE FILE FILES "/home/vinay/master_thesis/message_passing/code_repo/Boris_manipulator/source_code/catkin_ws/src/boris_manipulator/package.xml")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/boris_manipulator" TYPE FILE FILES "/home/vinay/Project/Boris_manipulator/source_code/catkin_ws/src/boris_manipulator/package.xml")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/boris_manipulator" TYPE PROGRAM FILES "/home/vinay/master_thesis/message_passing/code_repo/Boris_manipulator/source_code/catkin_ws/build/boris_manipulator/catkin_generated/installspace/server.py")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/boris_manipulator" TYPE PROGRAM FILES "/home/vinay/Project/Boris_manipulator/source_code/catkin_ws/build/boris_manipulator/catkin_generated/installspace/server.py")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/boris_manipulator" TYPE PROGRAM FILES "/home/vinay/master_thesis/message_passing/code_repo/Boris_manipulator/source_code/catkin_ws/build/boris_manipulator/catkin_generated/installspace/client.py")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/boris_manipulator" TYPE PROGRAM FILES "/home/vinay/Project/Boris_manipulator/source_code/catkin_ws/build/boris_manipulator/catkin_generated/installspace/client.py")
 endif()
 

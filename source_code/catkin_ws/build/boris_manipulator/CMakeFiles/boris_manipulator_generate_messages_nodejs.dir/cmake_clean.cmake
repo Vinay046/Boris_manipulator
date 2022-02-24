@@ -1,5 +1,5 @@
 file(REMOVE_RECURSE
-  "/home/vinay/master_thesis/message_passing/code_repo/Boris_manipulator/source_code/catkin_ws/devel/share/gennodejs/ros/boris_manipulator/srv/localization.js"
+  "/home/vinay/Project/Boris_manipulator/source_code/catkin_ws/devel/share/gennodejs/ros/boris_manipulator/srv/localization.js"
   "CMakeFiles/boris_manipulator_generate_messages_nodejs"
 )
 
