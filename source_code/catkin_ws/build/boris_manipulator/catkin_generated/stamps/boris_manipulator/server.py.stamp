@@ -3,7 +3,7 @@ import rospy
 from boris_manipulator.srv import localization, localizationResponse#, multiplyRequest
 from std_msgs.msg import Float64
 import socket
-distance_message = ''
+# position_message = ''
 
 class UDP_connect:
     def __init__(self, ip, port, buffersize):
@@ -29,15 +29,15 @@ class UDP_connect:
 def callback(request):
 	response = localizationResponse()
 	response.connection = True
-	distance_message = distancesUDP.get_message()
-	distance_message = distance_message.split(b'\x00')[0]
-	if not distance_message:
+	position_message = positionUDP.get_message()[0]
+	position_message = position_message.split(b'\x00')[0]
+	if not position_message:
 		response.connection = False
 	else:
-		distancesSplit = distance_message.split(b',')
-		response.distance_x = float(distancesSplit[1])
-		response.distance_y = float(distancesSplit[3])
-		response.distance_z = float(distancesSplit[5])
+		positionsSplit = position_message.split(b',')
+		response.position_x = float(positionsSplit[1])
+		response.position_y = float(positionsSplit[3])
+		response.position_z = float(positionsSplit[5])
 
 	return response
 
@@ -45,7 +45,7 @@ def callback(request):
 rospy.init_node("laser_service")
 service = rospy.Service('localization',localization,callback)
 localIP     = "192.168.78.57"
-localPortDistances = 65433
+localPortpositions = 65433
 bufferSize = 1024
-distancesUDP = UDP_connect(localIP, localPortDistances, bufferSize)
+positionUDP = UDP_connect(localIP, localPortpositions, bufferSize)
 rospy.spin()

@@ -1,6 +1,6 @@
 # CMake generated Testfile for 
 # Source directory: /usr/src/googletest
-# Build directory: /home/vinay/master_thesis/message_passing/code_repo/Boris_manipulator/source_code/catkin_ws/build/gtest
+# Build directory: /home/vinay/Project/Boris_manipulator/source_code/catkin_ws/build/gtest
 # 
 # This file includes the relevant testing commands required for 
 # testing this directory and lists subdirectories to be tested as well.

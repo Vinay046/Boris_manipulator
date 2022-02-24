@@ -1,5 +1,5 @@
 file(REMOVE_RECURSE
-  "/home/vinay/master_thesis/message_passing/code_repo/Boris_manipulator/source_code/catkin_ws/devel/include/boris_manipulator/localization.h"
+  "/home/vinay/Project/Boris_manipulator/source_code/catkin_ws/devel/include/boris_manipulator/localization.h"
   "CMakeFiles/boris_manipulator_generate_messages_cpp"
 )
 

@@ -1,7 +1,7 @@
 # generated from genmsg/cmake/pkg-genmsg.context.in
 
 messages_str = ""
-services_str = "/home/vinay/master_thesis/message_passing/code_repo/Boris_manipulator/source_code/catkin_ws/src/boris_manipulator/srv/localization.srv"
+services_str = "/home/vinay/Project/Boris_manipulator/source_code/catkin_ws/src/boris_manipulator/srv/localization.srv"
 pkg_name = "boris_manipulator"
 dependencies_str = "std_msgs;geometry_msgs"
 langs = "gencpp;geneus;genlisp;gennodejs;genpy"
