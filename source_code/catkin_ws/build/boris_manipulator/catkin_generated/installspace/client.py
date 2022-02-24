@@ -1,22 +1,22 @@
 # !/usr/bin/env python
 import rospy
 # print('imported rospy')
-from boris_manipulator.srv import multiply, multiplyResponse
+from boris_manipulator.srv import localization, localizationResponse
 # print('imported service files')
-
-def multiplier_client(x,y):
-	rospy.init_node('client_node')
-	rospy.wait_for_service('multiply')
-	rate = rospy.Rate(1)
-	while not rospy.is_shutdown():
-		try:
-			multiply_two_integers = rospy.ServiceProxy('multiply',multiply)
-			response = multiply_two_integers(x,y)
-			print(response.result)
-			rate.sleep()
-		except rospy.ServiceException as e:
-			print("service call failed %s",e )
+rospy.init_node('client_node')
+rospy.wait_for_service('localization')
+rate = rospy.Rate(10)	
+def laser_localization():	
+	try:	
+		get_locatlization_data = rospy.ServiceProxy('localization',localization)
+		response = get_locatlization_data()
+		return response
+		# rate.sleep()
+	except rospy.ServiceException as e:
+		print("service call failed %s",e )
 
 if __name__ == '__main__':
-	multiplier_client(72,3)
-
+	while not rospy.is_shutdown():	
+		laser_position = localizationResponse()
+		laser_position = laser_localization()
+		print(laser_position)

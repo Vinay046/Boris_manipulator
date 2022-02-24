@@ -1,6 +1,11 @@
 (cl:defpackage boris_manipulator-srv
   (:use )
   (:export
+   "LOCALIZATION"
+   "<LOCALIZATION-REQUEST>"
+   "LOCALIZATION-REQUEST"
+   "<LOCALIZATION-RESPONSE>"
+   "LOCALIZATION-RESPONSE"
    "MULTIPLY"
    "<MULTIPLY-REQUEST>"
    "MULTIPLY-REQUEST"

@@ -38,7 +38,7 @@ if(NOT DEFINED CMAKE_CROSSCOMPILING)
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/boris_manipulator/srv" TYPE FILE FILES "/home/vinay/master_thesis/message_passing/code_repo/Boris_manipulator/source_code/catkin_ws/src/boris_manipulator/srv/multiply.srv")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/boris_manipulator/srv" TYPE FILE FILES "/home/vinay/master_thesis/message_passing/code_repo/Boris_manipulator/source_code/catkin_ws/src/boris_manipulator/srv/localization.srv")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)

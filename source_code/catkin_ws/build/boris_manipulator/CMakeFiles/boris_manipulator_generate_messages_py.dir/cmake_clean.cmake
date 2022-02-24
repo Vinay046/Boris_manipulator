@@ -1,6 +1,6 @@
 file(REMOVE_RECURSE
   "/home/vinay/master_thesis/message_passing/code_repo/Boris_manipulator/source_code/catkin_ws/devel/lib/python3/dist-packages/boris_manipulator/srv/__init__.py"
-  "/home/vinay/master_thesis/message_passing/code_repo/Boris_manipulator/source_code/catkin_ws/devel/lib/python3/dist-packages/boris_manipulator/srv/_multiply.py"
+  "/home/vinay/master_thesis/message_passing/code_repo/Boris_manipulator/source_code/catkin_ws/devel/lib/python3/dist-packages/boris_manipulator/srv/_localization.py"
   "CMakeFiles/boris_manipulator_generate_messages_py"
 )
 

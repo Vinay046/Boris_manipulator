@@ -1,5 +1,5 @@
 file(REMOVE_RECURSE
-  "/home/vinay/master_thesis/message_passing/code_repo/Boris_manipulator/source_code/catkin_ws/devel/share/common-lisp/ros/boris_manipulator/srv/multiply.lisp"
+  "/home/vinay/master_thesis/message_passing/code_repo/Boris_manipulator/source_code/catkin_ws/devel/share/common-lisp/ros/boris_manipulator/srv/localization.lisp"
   "CMakeFiles/boris_manipulator_generate_messages_lisp"
 )
 
