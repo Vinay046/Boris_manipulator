@@ -1,4 +1,4 @@
-prefix=/home/vinay/Project/Boris_manipulator/source_code/catkin_ws/install
+prefix=/home/vinay/master_thesis/Boris_manipulator/source_code/catkin_ws/install
 
 Name: boris_manipulator
 Description: Description of boris_manipulator

@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/vinay/Project/Boris_manipulator/source_code/catkin_ws/src
+CMAKE_SOURCE_DIR = /home/vinay/master_thesis/Boris_manipulator/source_code/catkin_ws/src
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/vinay/Project/Boris_manipulator/source_code/catkin_ws/build
+CMAKE_BINARY_DIR = /home/vinay/master_thesis/Boris_manipulator/source_code/catkin_ws/build
 
 # Utility rule file for std_msgs_generate_messages_lisp.
 
@@ -63,10 +63,10 @@ boris_manipulator/CMakeFiles/std_msgs_generate_messages_lisp.dir/build: std_msgs
 .PHONY : boris_manipulator/CMakeFiles/std_msgs_generate_messages_lisp.dir/build
 
 boris_manipulator/CMakeFiles/std_msgs_generate_messages_lisp.dir/clean:
-	cd /home/vinay/Project/Boris_manipulator/source_code/catkin_ws/build/boris_manipulator && $(CMAKE_COMMAND) -P CMakeFiles/std_msgs_generate_messages_lisp.dir/cmake_clean.cmake
+	cd /home/vinay/master_thesis/Boris_manipulator/source_code/catkin_ws/build/boris_manipulator && $(CMAKE_COMMAND) -P CMakeFiles/std_msgs_generate_messages_lisp.dir/cmake_clean.cmake
 .PHONY : boris_manipulator/CMakeFiles/std_msgs_generate_messages_lisp.dir/clean
 
 boris_manipulator/CMakeFiles/std_msgs_generate_messages_lisp.dir/depend:
-	cd /home/vinay/Project/Boris_manipulator/source_code/catkin_ws/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/vinay/Project/Boris_manipulator/source_code/catkin_ws/src /home/vinay/Project/Boris_manipulator/source_code/catkin_ws/src/boris_manipulator /home/vinay/Project/Boris_manipulator/source_code/catkin_ws/build /home/vinay/Project/Boris_manipulator/source_code/catkin_ws/build/boris_manipulator /home/vinay/Project/Boris_manipulator/source_code/catkin_ws/build/boris_manipulator/CMakeFiles/std_msgs_generate_messages_lisp.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/vinay/master_thesis/Boris_manipulator/source_code/catkin_ws/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/vinay/master_thesis/Boris_manipulator/source_code/catkin_ws/src /home/vinay/master_thesis/Boris_manipulator/source_code/catkin_ws/src/boris_manipulator /home/vinay/master_thesis/Boris_manipulator/source_code/catkin_ws/build /home/vinay/master_thesis/Boris_manipulator/source_code/catkin_ws/build/boris_manipulator /home/vinay/master_thesis/Boris_manipulator/source_code/catkin_ws/build/boris_manipulator/CMakeFiles/std_msgs_generate_messages_lisp.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : boris_manipulator/CMakeFiles/std_msgs_generate_messages_lisp.dir/depend
 
