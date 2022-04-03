@@ -1,6 +1,11 @@
 (cl:defpackage boris_manipulator-srv
   (:use )
   (:export
+   "CONTROL"
+   "<CONTROL-REQUEST>"
+   "CONTROL-REQUEST"
+   "<CONTROL-RESPONSE>"
+   "CONTROL-RESPONSE"
    "LOCALIZATION"
    "<LOCALIZATION-REQUEST>"
    "LOCALIZATION-REQUEST"

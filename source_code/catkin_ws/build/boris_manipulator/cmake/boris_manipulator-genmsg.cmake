@@ -1,6 +1,6 @@
 # generated from genmsg/cmake/pkg-genmsg.cmake.em
 
-message(STATUS "boris_manipulator: 0 messages, 1 services")
+message(STATUS "boris_manipulator: 0 messages, 2 services")
 
 set(MSG_I_FLAGS "-Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg;-Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg")
 
@@ -22,6 +22,11 @@ add_custom_target(_boris_manipulator_generate_messages_check_deps_${_filename}
   COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "boris_manipulator" "/home/vinay/master_thesis/Boris_manipulator/source_code/catkin_ws/src/boris_manipulator/srv/localization.srv" ""
 )
 
+get_filename_component(_filename "/home/vinay/master_thesis/Boris_manipulator/source_code/catkin_ws/src/boris_manipulator/srv/control.srv" NAME_WE)
+add_custom_target(_boris_manipulator_generate_messages_check_deps_${_filename}
+  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "boris_manipulator" "/home/vinay/master_thesis/Boris_manipulator/source_code/catkin_ws/src/boris_manipulator/srv/control.srv" ""
+)
+
 #
 #  langs = gencpp;geneus;genlisp;gennodejs;genpy
 #
@@ -32,6 +37,12 @@ add_custom_target(_boris_manipulator_generate_messages_check_deps_${_filename}
 ### Generating Services
 _generate_srv_cpp(boris_manipulator
   "/home/vinay/master_thesis/Boris_manipulator/source_code/catkin_ws/src/boris_manipulator/srv/localization.srv"
+  "${MSG_I_FLAGS}"
+  ""
+  ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/boris_manipulator
+)
+_generate_srv_cpp(boris_manipulator
+  "/home/vinay/master_thesis/Boris_manipulator/source_code/catkin_ws/src/boris_manipulator/srv/control.srv"
   "${MSG_I_FLAGS}"
   ""
   ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/boris_manipulator
@@ -51,6 +62,8 @@ add_dependencies(boris_manipulator_generate_messages boris_manipulator_generate_
 # add dependencies to all check dependencies targets
 get_filename_component(_filename "/home/vinay/master_thesis/Boris_manipulator/source_code/catkin_ws/src/boris_manipulator/srv/localization.srv" NAME_WE)
 add_dependencies(boris_manipulator_generate_messages_cpp _boris_manipulator_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/vinay/master_thesis/Boris_manipulator/source_code/catkin_ws/src/boris_manipulator/srv/control.srv" NAME_WE)
+add_dependencies(boris_manipulator_generate_messages_cpp _boris_manipulator_generate_messages_check_deps_${_filename})
 
 # target for backward compatibility
 add_custom_target(boris_manipulator_gencpp)
@@ -65,6 +78,12 @@ list(APPEND ${PROJECT_NAME}_EXPORTED_TARGETS boris_manipulator_generate_messages
 ### Generating Services
 _generate_srv_eus(boris_manipulator
   "/home/vinay/master_thesis/Boris_manipulator/source_code/catkin_ws/src/boris_manipulator/srv/localization.srv"
+  "${MSG_I_FLAGS}"
+  ""
+  ${CATKIN_DEVEL_PREFIX}/${geneus_INSTALL_DIR}/boris_manipulator
+)
+_generate_srv_eus(boris_manipulator
+  "/home/vinay/master_thesis/Boris_manipulator/source_code/catkin_ws/src/boris_manipulator/srv/control.srv"
   "${MSG_I_FLAGS}"
   ""
   ${CATKIN_DEVEL_PREFIX}/${geneus_INSTALL_DIR}/boris_manipulator
@@ -84,6 +103,8 @@ add_dependencies(boris_manipulator_generate_messages boris_manipulator_generate_
 # add dependencies to all check dependencies targets
 get_filename_component(_filename "/home/vinay/master_thesis/Boris_manipulator/source_code/catkin_ws/src/boris_manipulator/srv/localization.srv" NAME_WE)
 add_dependencies(boris_manipulator_generate_messages_eus _boris_manipulator_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/vinay/master_thesis/Boris_manipulator/source_code/catkin_ws/src/boris_manipulator/srv/control.srv" NAME_WE)
+add_dependencies(boris_manipulator_generate_messages_eus _boris_manipulator_generate_messages_check_deps_${_filename})
 
 # target for backward compatibility
 add_custom_target(boris_manipulator_geneus)
@@ -98,6 +119,12 @@ list(APPEND ${PROJECT_NAME}_EXPORTED_TARGETS boris_manipulator_generate_messages
 ### Generating Services
 _generate_srv_lisp(boris_manipulator
   "/home/vinay/master_thesis/Boris_manipulator/source_code/catkin_ws/src/boris_manipulator/srv/localization.srv"
+  "${MSG_I_FLAGS}"
+  ""
+  ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/boris_manipulator
+)
+_generate_srv_lisp(boris_manipulator
+  "/home/vinay/master_thesis/Boris_manipulator/source_code/catkin_ws/src/boris_manipulator/srv/control.srv"
   "${MSG_I_FLAGS}"
   ""
   ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/boris_manipulator
@@ -117,6 +144,8 @@ add_dependencies(boris_manipulator_generate_messages boris_manipulator_generate_
 # add dependencies to all check dependencies targets
 get_filename_component(_filename "/home/vinay/master_thesis/Boris_manipulator/source_code/catkin_ws/src/boris_manipulator/srv/localization.srv" NAME_WE)
 add_dependencies(boris_manipulator_generate_messages_lisp _boris_manipulator_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/vinay/master_thesis/Boris_manipulator/source_code/catkin_ws/src/boris_manipulator/srv/control.srv" NAME_WE)
+add_dependencies(boris_manipulator_generate_messages_lisp _boris_manipulator_generate_messages_check_deps_${_filename})
 
 # target for backward compatibility
 add_custom_target(boris_manipulator_genlisp)
@@ -131,6 +160,12 @@ list(APPEND ${PROJECT_NAME}_EXPORTED_TARGETS boris_manipulator_generate_messages
 ### Generating Services
 _generate_srv_nodejs(boris_manipulator
   "/home/vinay/master_thesis/Boris_manipulator/source_code/catkin_ws/src/boris_manipulator/srv/localization.srv"
+  "${MSG_I_FLAGS}"
+  ""
+  ${CATKIN_DEVEL_PREFIX}/${gennodejs_INSTALL_DIR}/boris_manipulator
+)
+_generate_srv_nodejs(boris_manipulator
+  "/home/vinay/master_thesis/Boris_manipulator/source_code/catkin_ws/src/boris_manipulator/srv/control.srv"
   "${MSG_I_FLAGS}"
   ""
   ${CATKIN_DEVEL_PREFIX}/${gennodejs_INSTALL_DIR}/boris_manipulator
@@ -150,6 +185,8 @@ add_dependencies(boris_manipulator_generate_messages boris_manipulator_generate_
 # add dependencies to all check dependencies targets
 get_filename_component(_filename "/home/vinay/master_thesis/Boris_manipulator/source_code/catkin_ws/src/boris_manipulator/srv/localization.srv" NAME_WE)
 add_dependencies(boris_manipulator_generate_messages_nodejs _boris_manipulator_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/vinay/master_thesis/Boris_manipulator/source_code/catkin_ws/src/boris_manipulator/srv/control.srv" NAME_WE)
+add_dependencies(boris_manipulator_generate_messages_nodejs _boris_manipulator_generate_messages_check_deps_${_filename})
 
 # target for backward compatibility
 add_custom_target(boris_manipulator_gennodejs)
@@ -168,6 +205,12 @@ _generate_srv_py(boris_manipulator
   ""
   ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/boris_manipulator
 )
+_generate_srv_py(boris_manipulator
+  "/home/vinay/master_thesis/Boris_manipulator/source_code/catkin_ws/src/boris_manipulator/srv/control.srv"
+  "${MSG_I_FLAGS}"
+  ""
+  ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/boris_manipulator
+)
 
 ### Generating Module File
 _generate_module_py(boris_manipulator
@@ -182,6 +225,8 @@ add_dependencies(boris_manipulator_generate_messages boris_manipulator_generate_
 
 # add dependencies to all check dependencies targets
 get_filename_component(_filename "/home/vinay/master_thesis/Boris_manipulator/source_code/catkin_ws/src/boris_manipulator/srv/localization.srv" NAME_WE)
+add_dependencies(boris_manipulator_generate_messages_py _boris_manipulator_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/vinay/master_thesis/Boris_manipulator/source_code/catkin_ws/src/boris_manipulator/srv/control.srv" NAME_WE)
 add_dependencies(boris_manipulator_generate_messages_py _boris_manipulator_generate_messages_check_deps_${_filename})
 
 # target for backward compatibility

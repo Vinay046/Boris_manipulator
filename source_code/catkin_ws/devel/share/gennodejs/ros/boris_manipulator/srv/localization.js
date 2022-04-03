@@ -74,38 +74,17 @@ class localizationResponse {
   constructor(initObj={}) {
     if (initObj === null) {
       // initObj === null is a special case for deserialization where we don't initialize fields
-      this.connection = null;
-      this.distance_x = null;
-      this.distance_y = null;
-      this.distance_z = null;
+      this.connection_localization = null;
       this.position_x = null;
       this.position_y = null;
       this.position_z = null;
     }
     else {
-      if (initObj.hasOwnProperty('connection')) {
-        this.connection = initObj.connection
+      if (initObj.hasOwnProperty('connection_localization')) {
+        this.connection_localization = initObj.connection_localization
       }
       else {
-        this.connection = false;
-      }
-      if (initObj.hasOwnProperty('distance_x')) {
-        this.distance_x = initObj.distance_x
-      }
-      else {
-        this.distance_x = 0.0;
-      }
-      if (initObj.hasOwnProperty('distance_y')) {
-        this.distance_y = initObj.distance_y
-      }
-      else {
-        this.distance_y = 0.0;
-      }
-      if (initObj.hasOwnProperty('distance_z')) {
-        this.distance_z = initObj.distance_z
-      }
-      else {
-        this.distance_z = 0.0;
+        this.connection_localization = false;
       }
       if (initObj.hasOwnProperty('position_x')) {
         this.position_x = initObj.position_x
@@ -130,14 +109,8 @@ class localizationResponse {
 
   static serialize(obj, buffer, bufferOffset) {
     // Serializes a message object of type localizationResponse
-    // Serialize message field [connection]
-    bufferOffset = _serializer.bool(obj.connection, buffer, bufferOffset);
-    // Serialize message field [distance_x]
-    bufferOffset = _serializer.float64(obj.distance_x, buffer, bufferOffset);
-    // Serialize message field [distance_y]
-    bufferOffset = _serializer.float64(obj.distance_y, buffer, bufferOffset);
-    // Serialize message field [distance_z]
-    bufferOffset = _serializer.float64(obj.distance_z, buffer, bufferOffset);
+    // Serialize message field [connection_localization]
+    bufferOffset = _serializer.bool(obj.connection_localization, buffer, bufferOffset);
     // Serialize message field [position_x]
     bufferOffset = _serializer.float64(obj.position_x, buffer, bufferOffset);
     // Serialize message field [position_y]
@@ -151,14 +124,8 @@ class localizationResponse {
     //deserializes a message object of type localizationResponse
     let len;
     let data = new localizationResponse(null);
-    // Deserialize message field [connection]
-    data.connection = _deserializer.bool(buffer, bufferOffset);
-    // Deserialize message field [distance_x]
-    data.distance_x = _deserializer.float64(buffer, bufferOffset);
-    // Deserialize message field [distance_y]
-    data.distance_y = _deserializer.float64(buffer, bufferOffset);
-    // Deserialize message field [distance_z]
-    data.distance_z = _deserializer.float64(buffer, bufferOffset);
+    // Deserialize message field [connection_localization]
+    data.connection_localization = _deserializer.bool(buffer, bufferOffset);
     // Deserialize message field [position_x]
     data.position_x = _deserializer.float64(buffer, bufferOffset);
     // Deserialize message field [position_y]
@@ -169,7 +136,7 @@ class localizationResponse {
   }
 
   static getMessageSize(object) {
-    return 49;
+    return 25;
   }
 
   static datatype() {
@@ -179,16 +146,13 @@ class localizationResponse {
 
   static md5sum() {
     //Returns md5sum for a message object
-    return '9262ab8a424c72423785dba6bebfb167';
+    return '75886f154361ea2dcee0a0ccaddcf0d9';
   }
 
   static messageDefinition() {
     // Returns full string definition for message
     return `
-    bool connection
-    float64 distance_x
-    float64 distance_y
-    float64 distance_z
+    bool connection_localization
     float64 position_x
     float64 position_y
     float64 position_z
@@ -202,32 +166,11 @@ class localizationResponse {
       msg = {};
     }
     const resolved = new localizationResponse(null);
-    if (msg.connection !== undefined) {
-      resolved.connection = msg.connection;
+    if (msg.connection_localization !== undefined) {
+      resolved.connection_localization = msg.connection_localization;
     }
     else {
-      resolved.connection = false
-    }
-
-    if (msg.distance_x !== undefined) {
-      resolved.distance_x = msg.distance_x;
-    }
-    else {
-      resolved.distance_x = 0.0
-    }
-
-    if (msg.distance_y !== undefined) {
-      resolved.distance_y = msg.distance_y;
-    }
-    else {
-      resolved.distance_y = 0.0
-    }
-
-    if (msg.distance_z !== undefined) {
-      resolved.distance_z = msg.distance_z;
-    }
-    else {
-      resolved.distance_z = 0.0
+      resolved.connection_localization = false
     }
 
     if (msg.position_x !== undefined) {
@@ -258,6 +201,6 @@ class localizationResponse {
 module.exports = {
   Request: localizationRequest,
   Response: localizationResponse,
-  md5sum() { return '9262ab8a424c72423785dba6bebfb167'; },
+  md5sum() { return '75886f154361ea2dcee0a0ccaddcf0d9'; },
   datatype() { return 'boris_manipulator/localization'; }
 };

@@ -324,6 +324,19 @@ boris_manipulator_generate_messages_nodejs/fast:
 .PHONY : boris_manipulator_generate_messages_nodejs/fast
 
 #=============================================================================
+# Target rules for targets named boris_manipulator_genlisp
+
+# Build rule for target.
+boris_manipulator_genlisp: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 boris_manipulator_genlisp
+.PHONY : boris_manipulator_genlisp
+
+# fast build rule for target.
+boris_manipulator_genlisp/fast:
+	$(MAKE) -f boris_manipulator/CMakeFiles/boris_manipulator_genlisp.dir/build.make boris_manipulator/CMakeFiles/boris_manipulator_genlisp.dir/build
+.PHONY : boris_manipulator_genlisp/fast
+
+#=============================================================================
 # Target rules for targets named rosgraph_msgs_generate_messages_py
 
 # Build rule for target.
@@ -439,6 +452,19 @@ std_msgs_generate_messages_cpp: cmake_check_build_system
 std_msgs_generate_messages_cpp/fast:
 	$(MAKE) -f boris_manipulator/CMakeFiles/std_msgs_generate_messages_cpp.dir/build.make boris_manipulator/CMakeFiles/std_msgs_generate_messages_cpp.dir/build
 .PHONY : std_msgs_generate_messages_cpp/fast
+
+#=============================================================================
+# Target rules for targets named _boris_manipulator_generate_messages_check_deps_control
+
+# Build rule for target.
+_boris_manipulator_generate_messages_check_deps_control: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 _boris_manipulator_generate_messages_check_deps_control
+.PHONY : _boris_manipulator_generate_messages_check_deps_control
+
+# fast build rule for target.
+_boris_manipulator_generate_messages_check_deps_control/fast:
+	$(MAKE) -f boris_manipulator/CMakeFiles/_boris_manipulator_generate_messages_check_deps_control.dir/build.make boris_manipulator/CMakeFiles/_boris_manipulator_generate_messages_check_deps_control.dir/build
+.PHONY : _boris_manipulator_generate_messages_check_deps_control/fast
 
 #=============================================================================
 # Target rules for targets named rosgraph_msgs_generate_messages_cpp
@@ -700,19 +726,6 @@ boris_manipulator_generate_messages_lisp/fast:
 	$(MAKE) -f boris_manipulator/CMakeFiles/boris_manipulator_generate_messages_lisp.dir/build.make boris_manipulator/CMakeFiles/boris_manipulator_generate_messages_lisp.dir/build
 .PHONY : boris_manipulator_generate_messages_lisp/fast
 
-#=============================================================================
-# Target rules for targets named boris_manipulator_genlisp
-
-# Build rule for target.
-boris_manipulator_genlisp: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 boris_manipulator_genlisp
-.PHONY : boris_manipulator_genlisp
-
-# fast build rule for target.
-boris_manipulator_genlisp/fast:
-	$(MAKE) -f boris_manipulator/CMakeFiles/boris_manipulator_genlisp.dir/build.make boris_manipulator/CMakeFiles/boris_manipulator_genlisp.dir/build
-.PHONY : boris_manipulator_genlisp/fast
-
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -738,6 +751,7 @@ help:
 	@echo "... boris_manipulator_genpy"
 	@echo "... boris_manipulator_generate_messages_py"
 	@echo "... boris_manipulator_generate_messages_nodejs"
+	@echo "... boris_manipulator_genlisp"
 	@echo "... rosgraph_msgs_generate_messages_py"
 	@echo "... geometry_msgs_generate_messages_cpp"
 	@echo "... geometry_msgs_generate_messages_nodejs"
@@ -747,6 +761,7 @@ help:
 	@echo "... roscpp_generate_messages_lisp"
 	@echo "... _catkin_empty_exported_target"
 	@echo "... std_msgs_generate_messages_cpp"
+	@echo "... _boris_manipulator_generate_messages_check_deps_control"
 	@echo "... rosgraph_msgs_generate_messages_cpp"
 	@echo "... std_msgs_generate_messages_eus"
 	@echo "... geometry_msgs_generate_messages_lisp"
@@ -767,7 +782,6 @@ help:
 	@echo "... boris_manipulator_geneus"
 	@echo "... geometry_msgs_generate_messages_py"
 	@echo "... boris_manipulator_generate_messages_lisp"
-	@echo "... boris_manipulator_genlisp"
 .PHONY : help
 
 

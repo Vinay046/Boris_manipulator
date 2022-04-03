@@ -54,6 +54,7 @@ CMAKE_BINARY_DIR = /home/vinay/master_thesis/Boris_manipulator/source_code/catki
 include boris_manipulator/CMakeFiles/boris_manipulator_generate_messages_py.dir/progress.make
 
 boris_manipulator/CMakeFiles/boris_manipulator_generate_messages_py: /home/vinay/master_thesis/Boris_manipulator/source_code/catkin_ws/devel/lib/python3/dist-packages/boris_manipulator/srv/_localization.py
+boris_manipulator/CMakeFiles/boris_manipulator_generate_messages_py: /home/vinay/master_thesis/Boris_manipulator/source_code/catkin_ws/devel/lib/python3/dist-packages/boris_manipulator/srv/_control.py
 boris_manipulator/CMakeFiles/boris_manipulator_generate_messages_py: /home/vinay/master_thesis/Boris_manipulator/source_code/catkin_ws/devel/lib/python3/dist-packages/boris_manipulator/srv/__init__.py
 
 
@@ -62,13 +63,20 @@ boris_manipulator/CMakeFiles/boris_manipulator_generate_messages_py: /home/vinay
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/vinay/master_thesis/Boris_manipulator/source_code/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating Python code from SRV boris_manipulator/localization"
 	cd /home/vinay/master_thesis/Boris_manipulator/source_code/catkin_ws/build/boris_manipulator && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genpy/cmake/../../../lib/genpy/gensrv_py.py /home/vinay/master_thesis/Boris_manipulator/source_code/catkin_ws/src/boris_manipulator/srv/localization.srv -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -p boris_manipulator -o /home/vinay/master_thesis/Boris_manipulator/source_code/catkin_ws/devel/lib/python3/dist-packages/boris_manipulator/srv
 
+/home/vinay/master_thesis/Boris_manipulator/source_code/catkin_ws/devel/lib/python3/dist-packages/boris_manipulator/srv/_control.py: /opt/ros/noetic/lib/genpy/gensrv_py.py
+/home/vinay/master_thesis/Boris_manipulator/source_code/catkin_ws/devel/lib/python3/dist-packages/boris_manipulator/srv/_control.py: /home/vinay/master_thesis/Boris_manipulator/source_code/catkin_ws/src/boris_manipulator/srv/control.srv
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/vinay/master_thesis/Boris_manipulator/source_code/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Generating Python code from SRV boris_manipulator/control"
+	cd /home/vinay/master_thesis/Boris_manipulator/source_code/catkin_ws/build/boris_manipulator && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genpy/cmake/../../../lib/genpy/gensrv_py.py /home/vinay/master_thesis/Boris_manipulator/source_code/catkin_ws/src/boris_manipulator/srv/control.srv -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -p boris_manipulator -o /home/vinay/master_thesis/Boris_manipulator/source_code/catkin_ws/devel/lib/python3/dist-packages/boris_manipulator/srv
+
 /home/vinay/master_thesis/Boris_manipulator/source_code/catkin_ws/devel/lib/python3/dist-packages/boris_manipulator/srv/__init__.py: /opt/ros/noetic/lib/genpy/genmsg_py.py
 /home/vinay/master_thesis/Boris_manipulator/source_code/catkin_ws/devel/lib/python3/dist-packages/boris_manipulator/srv/__init__.py: /home/vinay/master_thesis/Boris_manipulator/source_code/catkin_ws/devel/lib/python3/dist-packages/boris_manipulator/srv/_localization.py
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/vinay/master_thesis/Boris_manipulator/source_code/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Generating Python srv __init__.py for boris_manipulator"
+/home/vinay/master_thesis/Boris_manipulator/source_code/catkin_ws/devel/lib/python3/dist-packages/boris_manipulator/srv/__init__.py: /home/vinay/master_thesis/Boris_manipulator/source_code/catkin_ws/devel/lib/python3/dist-packages/boris_manipulator/srv/_control.py
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/vinay/master_thesis/Boris_manipulator/source_code/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Generating Python srv __init__.py for boris_manipulator"
 	cd /home/vinay/master_thesis/Boris_manipulator/source_code/catkin_ws/build/boris_manipulator && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genpy/cmake/../../../lib/genpy/genmsg_py.py -o /home/vinay/master_thesis/Boris_manipulator/source_code/catkin_ws/devel/lib/python3/dist-packages/boris_manipulator/srv --initpy
 
 boris_manipulator_generate_messages_py: boris_manipulator/CMakeFiles/boris_manipulator_generate_messages_py
 boris_manipulator_generate_messages_py: /home/vinay/master_thesis/Boris_manipulator/source_code/catkin_ws/devel/lib/python3/dist-packages/boris_manipulator/srv/_localization.py
+boris_manipulator_generate_messages_py: /home/vinay/master_thesis/Boris_manipulator/source_code/catkin_ws/devel/lib/python3/dist-packages/boris_manipulator/srv/_control.py
 boris_manipulator_generate_messages_py: /home/vinay/master_thesis/Boris_manipulator/source_code/catkin_ws/devel/lib/python3/dist-packages/boris_manipulator/srv/__init__.py
 boris_manipulator_generate_messages_py: boris_manipulator/CMakeFiles/boris_manipulator_generate_messages_py.dir/build.make
 

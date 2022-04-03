@@ -40,7 +40,7 @@ template<>
 struct MD5Sum< ::boris_manipulator::localization > {
   static const char* value()
   {
-    return "9262ab8a424c72423785dba6bebfb167";
+    return "75886f154361ea2dcee0a0ccaddcf0d9";
   }
 
   static const char* value(const ::boris_manipulator::localization&) { return value(); }

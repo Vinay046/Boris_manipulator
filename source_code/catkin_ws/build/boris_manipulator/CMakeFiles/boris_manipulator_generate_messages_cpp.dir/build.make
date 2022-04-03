@@ -54,6 +54,7 @@ CMAKE_BINARY_DIR = /home/vinay/master_thesis/Boris_manipulator/source_code/catki
 include boris_manipulator/CMakeFiles/boris_manipulator_generate_messages_cpp.dir/progress.make
 
 boris_manipulator/CMakeFiles/boris_manipulator_generate_messages_cpp: /home/vinay/master_thesis/Boris_manipulator/source_code/catkin_ws/devel/include/boris_manipulator/localization.h
+boris_manipulator/CMakeFiles/boris_manipulator_generate_messages_cpp: /home/vinay/master_thesis/Boris_manipulator/source_code/catkin_ws/devel/include/boris_manipulator/control.h
 
 
 /home/vinay/master_thesis/Boris_manipulator/source_code/catkin_ws/devel/include/boris_manipulator/localization.h: /opt/ros/noetic/lib/gencpp/gen_cpp.py
@@ -63,8 +64,16 @@ boris_manipulator/CMakeFiles/boris_manipulator_generate_messages_cpp: /home/vina
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/vinay/master_thesis/Boris_manipulator/source_code/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating C++ code from boris_manipulator/localization.srv"
 	cd /home/vinay/master_thesis/Boris_manipulator/source_code/catkin_ws/src/boris_manipulator && /home/vinay/master_thesis/Boris_manipulator/source_code/catkin_ws/build/catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/gencpp/cmake/../../../lib/gencpp/gen_cpp.py /home/vinay/master_thesis/Boris_manipulator/source_code/catkin_ws/src/boris_manipulator/srv/localization.srv -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -p boris_manipulator -o /home/vinay/master_thesis/Boris_manipulator/source_code/catkin_ws/devel/include/boris_manipulator -e /opt/ros/noetic/share/gencpp/cmake/..
 
+/home/vinay/master_thesis/Boris_manipulator/source_code/catkin_ws/devel/include/boris_manipulator/control.h: /opt/ros/noetic/lib/gencpp/gen_cpp.py
+/home/vinay/master_thesis/Boris_manipulator/source_code/catkin_ws/devel/include/boris_manipulator/control.h: /home/vinay/master_thesis/Boris_manipulator/source_code/catkin_ws/src/boris_manipulator/srv/control.srv
+/home/vinay/master_thesis/Boris_manipulator/source_code/catkin_ws/devel/include/boris_manipulator/control.h: /opt/ros/noetic/share/gencpp/msg.h.template
+/home/vinay/master_thesis/Boris_manipulator/source_code/catkin_ws/devel/include/boris_manipulator/control.h: /opt/ros/noetic/share/gencpp/srv.h.template
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/vinay/master_thesis/Boris_manipulator/source_code/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Generating C++ code from boris_manipulator/control.srv"
+	cd /home/vinay/master_thesis/Boris_manipulator/source_code/catkin_ws/src/boris_manipulator && /home/vinay/master_thesis/Boris_manipulator/source_code/catkin_ws/build/catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/gencpp/cmake/../../../lib/gencpp/gen_cpp.py /home/vinay/master_thesis/Boris_manipulator/source_code/catkin_ws/src/boris_manipulator/srv/control.srv -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -p boris_manipulator -o /home/vinay/master_thesis/Boris_manipulator/source_code/catkin_ws/devel/include/boris_manipulator -e /opt/ros/noetic/share/gencpp/cmake/..
+
 boris_manipulator_generate_messages_cpp: boris_manipulator/CMakeFiles/boris_manipulator_generate_messages_cpp
 boris_manipulator_generate_messages_cpp: /home/vinay/master_thesis/Boris_manipulator/source_code/catkin_ws/devel/include/boris_manipulator/localization.h
+boris_manipulator_generate_messages_cpp: /home/vinay/master_thesis/Boris_manipulator/source_code/catkin_ws/devel/include/boris_manipulator/control.h
 boris_manipulator_generate_messages_cpp: boris_manipulator/CMakeFiles/boris_manipulator_generate_messages_cpp.dir/build.make
 
 .PHONY : boris_manipulator_generate_messages_cpp
