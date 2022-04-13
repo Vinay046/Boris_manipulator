@@ -92,10 +92,10 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/boris_manipulator" TYPE PROGRAM FILES "/home/vinay/master_thesis/Boris_manipulator/source_code/catkin_ws/build/boris_manipulator/catkin_generated/installspace/server.py")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/boris_manipulator" TYPE PROGRAM FILES "/home/vinay/master_thesis/Boris_manipulator/source_code/catkin_ws/build/boris_manipulator/catkin_generated/installspace/localization.py")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/boris_manipulator" TYPE PROGRAM FILES "/home/vinay/master_thesis/Boris_manipulator/source_code/catkin_ws/build/boris_manipulator/catkin_generated/installspace/client.py")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/boris_manipulator" TYPE PROGRAM FILES "/home/vinay/master_thesis/Boris_manipulator/source_code/catkin_ws/build/boris_manipulator/catkin_generated/installspace/robot_control.py")
 endif()
 

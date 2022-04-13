@@ -1,0 +1,7 @@
+<launch>
+  <node name="control_flags" pkg="boris_manipulator" type="control_flags.py" output="screen"/>
+  <node name="setup_node" pkg="boris_manipulator" type="setup.py" output="screen"/>
+  <node name="Robot_control" pkg="boris_manipulator" type="robot_control.py" output="screen"/>
+  <node name="localization" pkg="boris_manipulator" type="localization.py" output="screen"/>
+  <node name="calibration" pkg="boris_manipulator" type="calibration.py" output="screen"/>
+</launch>
