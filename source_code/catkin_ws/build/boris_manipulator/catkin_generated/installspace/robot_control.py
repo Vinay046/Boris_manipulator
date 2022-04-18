@@ -46,18 +46,18 @@ def Setup_complete_callback(msg_callback):
     Ready.data = msg_callback.data
 
 def X_Target_callback(x_msg_callback):
-    X_motor.target.data = x_msg_callback.data + 0.000001
-    if Ready.data and not X_Busy.data:
+    X_motor.target.data =  x_msg_callback.data + 0.000001
+    if (Ready.data == True) and (X_Busy.data == False):
         X_motor.move_actuator()
 
 def Y_Target_callback(y_msg_callback):
     Y_motor.target.data = y_msg_callback.data + 0.000001
-    if Ready.data and not Y_Busy.data:
+    if (Ready.data == True) and (X_Busy.data == False):
         Y_motor.move_actuator()
 
 def Z_Target_callback(z_msg_callback):
     Z_motor.target.data = z_msg_callback.data + 0.000001
-    if Ready.data and not Z_Busy.data:
+    if (Ready.data == True) and (X_Busy.data == False):
         Z_motor.move_actuator()
 
 
