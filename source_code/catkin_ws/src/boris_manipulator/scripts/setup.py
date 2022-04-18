@@ -1,4 +1,7 @@
 #! /usr/bin/env python3
+
+
+# Redo the file with correct sequence
 import rospy
 import time
 from std_msgs.msg import Bool
