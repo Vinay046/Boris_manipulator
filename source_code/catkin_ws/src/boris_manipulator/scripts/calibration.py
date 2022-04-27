@@ -32,6 +32,14 @@ Y_distance3.data = 0.0
 Z_distance3 = Float32()
 Z_distance3.data = -10
 
+X_distance4 = Float32()
+X_distance4.data = 0.0#211.3
+Y_distance4 = Float32()
+Y_distance4.data = 0.0#1838.99 
+Z_distance4 = Float32()
+Z_distance4.data = 0.0#-6.58470766e+02
+
+
 X_Busy = Bool()
 X_Busy.data = False
 Y_Busy = Bool()
@@ -148,12 +156,28 @@ def calibrate():
     pub_directionz.publish(Z_distance0)
     rospy.sleep(1)
 
+    while (Y_Busy.data == True):
+        # print('moving') 
+        rospy.sleep(0.5)   
+    print('done moving')
+    rospy.sleep(2)
+
     origin_point = np.array([[laser_position_origin.position_x],[laser_position_origin.position_y],[laser_position_origin.position_z]])
     first_point = np.array([[laser_position_1.position_x],[laser_position_1.position_y],[laser_position_1.position_z]])
     second_point = np.array([[laser_position_2.position_x],[laser_position_2.position_y],[laser_position_2.position_z]])
     third_point = np.array([[laser_position_3.position_x],[laser_position_3.position_y],[laser_position_3.position_z]])
     T = np.append(np.append(np.append(np.append((first_point - origin_point)/100,(second_point - origin_point)/100,axis = 1),(third_point - origin_point)/10,axis = 1),origin_point,axis=1),np.array([[0,0,0,1]]),axis = 0)
-    print(T)
+    Rot = T[:3,:3]
+    T_inv = np.append(np.append(Rot.T,-np.matmul(Rot.T,origin_point),axis=1),np.array([[0,0,0,1]]),axis = 0)
+    target_point = np.array([[211.3],[1838.99],[-6.58470766e+02],[1]])
+    transposed_data = np.matmul(T_inv,target_point)
+    X_distance4.data = transposed_data[0][0]
+    Y_distance4.data = transposed_data[1][0]
+    Z_distance4.data = transposed_data[2][0]
+    
+    pub_directionx.publish(X_distance4)
+    pub_directiony.publish(Y_distance4)
+    pub_directionz.publish(Z_distance4)
     return True
 
 
