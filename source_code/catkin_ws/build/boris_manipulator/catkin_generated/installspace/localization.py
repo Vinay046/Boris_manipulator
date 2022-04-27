@@ -32,7 +32,7 @@ def localization_callback(request):
     response = localizationResponse()
     response.connection_localization = True
     position_message = positionUDP.get_message()[0]
-    # position_message = position_message[0]
+    position_message = position_message.split(b'\x00')[0]
     if not position_message:
         response.connection = False
     else:
@@ -52,18 +52,18 @@ def control_callback(req):
     
     response = controlResponse()
     response.connection_control = True
-    control_message = True #controlUDP.get_message()
-    # control_message = control_message.split(b'\x00')[0]
+    control_message = controlUDP.get_message()[0]
+    control_message = control_message.split(b'\x00')[0]
     if not control_message:
         response.connection = False
     else:
-        # controlsSplit = control_message.split(b',')
+        controlsSplit = control_message.split(b',')
         # response.distance_x = 1
         # response.distance_y = 2
         # response.distance_z = 3
-        response.control_x = 1#float(controlsSplit[1])
-        response.control_y = 2#float(controlsSplit[3])
-        response.control_z = 1#float(controlsSplit[5])
+        response.control_x = float(controlsSplit[1])
+        response.control_y = float(controlsSplit[3])
+        response.control_z = float(controlsSplit[5])
 
     return response
 
@@ -71,7 +71,7 @@ def control_callback(req):
 rospy.init_node("laser_service")
 service_localization = rospy.Service('localization',localization,localization_callback)
 service_control_signals = rospy.Service('control_signals',control,control_callback)
-localIP     = '127.0.0.1'  #"192.168.78.57" add the right IP address later
+localIP     = '192.168.78.66'  #"192.168.78.57" add the right IP address later
 localPortPostion = 65433
 localPortControl = 65432
 bufferSize = 1024

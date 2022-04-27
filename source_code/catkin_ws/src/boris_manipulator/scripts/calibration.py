@@ -1,22 +1,36 @@
 #!/usr/bin/env python3
 import rospy
+import numpy as np
 from std_msgs.msg import Bool, Float32, Int16
 from boris_manipulator.srv import localization, localizationResponse
 
 X_distance0 = Float32()
-X_distance0.data = 300.0
+X_distance0.data = 0.0
 Y_distance0 = Float32()
 Y_distance0.data = 0.0 
+Z_distance0 = Float32()
+Z_distance0.data = 0.0
 
 X_distance1 = Float32()
-X_distance1.data = 200.0
+X_distance1.data = 100.0
 Y_distance1 = Float32()
 Y_distance1.data = 0.0 
+Z_distance1 = Float32()
+Z_distance1.data = 0.0
 
 X_distance2 = Float32()
-X_distance2.data = 300.0
+X_distance2.data = 0.0
 Y_distance2 = Float32()
 Y_distance2.data = 100.0 
+Z_distance2 = Float32()
+Z_distance2.data = 0.0
+
+X_distance3 = Float32()
+X_distance3.data = 0.0
+Y_distance3 = Float32()
+Y_distance3.data = 0.0 
+Z_distance3 = Float32()
+Z_distance3.data = -10
 
 X_Busy = Bool()
 X_Busy.data = False
@@ -32,6 +46,7 @@ rospy.wait_for_service('localization')
 laser_position_origin = localizationResponse()
 laser_position_1 = localizationResponse()
 laser_position_2 = localizationResponse()
+laser_position_3 = localizationResponse()
 
 def X_Busy_callback(x_Busy):
     X_Busy.data = x_Busy.data
@@ -67,50 +82,78 @@ def calibrate():
     
     pub_directionx.publish(X_distance0)
     pub_directiony.publish(Y_distance0)
+    pub_directionz.publish(Z_distance0)
     rospy.sleep(1)
     
     while (X_Busy.data == True):
         # print('moving') 
         rospy.sleep(0.5)   
     print('done moving')
-    rospy.sleep(1)
+    rospy.sleep(2)
     laser_position_origin = laser_localization()
     print(laser_position_origin)
+    rospy.sleep(2)
+    
+    # move the robot to -10 mm along robot's Z
+    
+    pub_directionx.publish(X_distance3)
+    pub_directiony.publish(Y_distance3)
+    pub_directionz.publish(Z_distance3)
+    rospy.sleep(1)
+
+    while (Z_Busy.data == True):
+        # print('moving') 
+        rospy.sleep(0.5) 
+    print('done moving')
+    rospy.sleep(2)
+    laser_position_3 = laser_localization()
+    print(laser_position_3)
+    rospy.sleep(2)
 
     # move the robot to 100 mm along robot's X
     
-    rospy.sleep(2)
     pub_directionx.publish(X_distance1)
     pub_directiony.publish(Y_distance1)
+    pub_directionz.publish(Z_distance1)
     rospy.sleep(1)
 
     while (X_Busy.data == True):
         # print('moving') 
         rospy.sleep(0.5) 
     print('done moving')
+    rospy.sleep(2)
     laser_position_1 = laser_localization()
     print(laser_position_1)
     rospy.sleep(2)
 
-    # first move it to the robot_origin
+    # move the robot to 100 mm along robot's Y
     
     pub_directionx.publish(X_distance2)
     pub_directiony.publish(Y_distance2)
+    pub_directionz.publish(Z_distance2)
     rospy.sleep(1)
     
     while (Y_Busy.data == True):
         # print('moving') 
         rospy.sleep(0.5)   
     print('done moving')
-    rospy.sleep(1)
+    rospy.sleep(2)
     laser_position_2 = laser_localization()
     print(laser_position_2)
-    rospy.sleep(1)
+    rospy.sleep(2)
 
     # exiting by moving the actuator back to origin
     pub_directionx.publish(X_distance0)
     pub_directiony.publish(Y_distance0)
+    pub_directionz.publish(Z_distance0)
     rospy.sleep(1)
+
+    origin_point = np.array([[laser_position_origin.position_x],[laser_position_origin.position_y],[laser_position_origin.position_z]])
+    first_point = np.array([[laser_position_1.position_x],[laser_position_1.position_y],[laser_position_1.position_z]])
+    second_point = np.array([[laser_position_2.position_x],[laser_position_2.position_y],[laser_position_2.position_z]])
+    third_point = np.array([[laser_position_3.position_x],[laser_position_3.position_y],[laser_position_3.position_z]])
+    T = np.append(np.append(np.append(np.append((first_point - origin_point)/100,(second_point - origin_point)/100,axis = 1),(third_point - origin_point)/10,axis = 1),origin_point,axis=1),np.array([[0,0,0,1]]),axis = 0)
+    print(T)
     return True
 
 
@@ -128,6 +171,7 @@ pub_directionz = rospy.Publisher('Z_Target', Float32, queue_size=10)
 rospy.init_node('calibration',anonymous = True)
 
 calibration_complete = calibrate()
+
 rate = rospy.Rate(10)
 while not rospy.is_shutdown():
     rate.sleep()
