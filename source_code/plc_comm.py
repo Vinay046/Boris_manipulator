@@ -10,9 +10,9 @@ M1 is 8193
 
 # print(client.read_holding_registers(0).registers)
 # while True:
-client.write_registers(0,0) # D3
-client.write_registers(2,0) # D2
-client.write_registers(4,0) # D3
+client.write_registers(0,15000-int(50*(150.199-0.23))) # D3
+client.write_registers(2,(50*int(149.72000122070312+0.3444))) # D2
+client.write_registers(4,int(50*(0.22-0.21))) # D3
 # client.write_coil(8194,True)# turn on 192.168.1.241 M2
 # client.write_coil(8195,True)# turn on 192.168.1.242 M3
 # client.write_coil(8196,True)# turn on 192.168.1.240 M4

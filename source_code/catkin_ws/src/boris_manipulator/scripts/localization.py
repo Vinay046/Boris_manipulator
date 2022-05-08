@@ -11,38 +11,38 @@ class UDP_connect:
         self._buffersize = buffersize
 
         
-    def get_message(self):
-        UDPServerSocket = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
-        UDPServerSocket.bind((self._ip, self._port))
-        UDPServerSocket.settimeout(5)
+    # def get_message(self):
+    #     UDPServerSocket = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
+    #     UDPServerSocket.bind((self._ip, self._port))
+    #     UDPServerSocket.settimeout(5)
 
-        try:
-            bytesAddressPair = UDPServerSocket.recvfrom(self._buffersize)
-        except socket.timeout:
-            return False 
-        message = bytesAddressPair[0]
-        address = bytesAddressPair[1]
+    #     try:
+    #         bytesAddressPair = UDPServerSocket.recvfrom(self._buffersize)
+    #     except socket.timeout:
+    #         return False 
+    #     message = bytesAddressPair[0]
+    #     address = bytesAddressPair[1]
 
-        return [message, address]
+    #     return [message, address]
 
-    # def get_message(self): # remove the function when you are going to connect to Alina's computer to receive the position data
-    #     return True
+    def get_message(self): # remove the function when you are going to connect to Alina's computer to receive the position data
+        return True
 
 def localization_callback(request):
     response = localizationResponse()
     response.connection_localization = True
-    position_message = positionUDP.get_message()[0]
-    position_message = position_message.split(b'\x00')[0]
+    position_message = positionUDP.get_message()#[0]
+    # position_message = position_message.split(b'\x00')[0]
     if not position_message:
         response.connection = False
     else:
-        positionsSplit = position_message.split(b',')
+        # positionsSplit = position_message.split(b',')
         # response.distance_x = 1
         # response.distance_y = 2
         # response.distance_z = 3
-        response.position_x = float(positionsSplit[1])
-        response.position_y = float(positionsSplit[3])
-        response.position_z = float(positionsSplit[5])
+        response.position_x = 0 # float(positionsSplit[1])
+        response.position_y = 0 # float(positionsSplit[3])
+        response.position_z = 0 # float(positionsSplit[5])
 
     return response
 
@@ -52,18 +52,18 @@ def control_callback(req):
     
     response = controlResponse()
     response.connection_control = True
-    control_message = controlUDP.get_message()[0]
-    control_message = control_message.split(b'\x00')[0]
+    control_message = controlUDP.get_message()#[0]
+    # control_message = control_message.split(b'\x00')[0]
     if not control_message:
         response.connection = False
     else:
-        controlsSplit = control_message.split(b',')
+        # controlsSplit = control_message.split(b',')
         # response.distance_x = 1
         # response.distance_y = 2
         # response.distance_z = 3
-        response.control_x = float(controlsSplit[1])
-        response.control_y = float(controlsSplit[3])
-        response.control_z = float(controlsSplit[5])
+        response.distance_x = 0.9 # float(controlsSplit[1])
+        response.distance_y = 0.2 # float(controlsSplit[3])
+        response.distance_z = 0 # float(controlsSplit[5])
 
     return response
 

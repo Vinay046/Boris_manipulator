@@ -14,17 +14,11 @@ pub_directionz = rospy.Publisher('Z_Target', Float32, queue_size=10)
 
 rate = rospy.Rate(100) # 10hz
 
-# position=Float32MultiArray() # declaring a message variable of type Int32
-# position.data=[0.0,0.0,0.0] # Initializing count
 
-# direction=Float32MultiArray() # declaring a message variable of type Int32
-# direction.data=[0.0,0.0,0.0] # Initializing count
-# dt = 0.025
-# x = 0
 while not rospy.is_shutdown(): # run the node until Ctrl-C is pressed
-    a = 0#10.04 #float(input("enter Vx: "))
-    b = 0#10.04 #float(input("enter Vy: "))
-    c = 0#10.04 #float(input("enter Vz: "))
+    a = float(input("enter x: "))
+    b = float(input("enter y: "))
+    c = float(input("enter z: "))
     pub_directionx.publish(a)
     pub_directiony.publish(b)
     pub_directionz.publish(c)

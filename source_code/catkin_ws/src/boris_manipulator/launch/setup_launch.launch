@@ -4,4 +4,5 @@
   <node name="Robot_control" pkg="boris_manipulator" type="robot_control.py" output="screen"/>
   <node name="localization" pkg="boris_manipulator" type="localization.py" output="screen"/>
   <node name="calibration" pkg="boris_manipulator" type="calibration.py" output="screen"/>
+  <node name="positioning_task" pkg="boris_manipulator" type="positioning_task.py" output="screen"/>
 </launch>

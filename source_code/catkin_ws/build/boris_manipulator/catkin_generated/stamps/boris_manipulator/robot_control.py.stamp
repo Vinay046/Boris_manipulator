@@ -57,6 +57,8 @@ def Y_Target_callback(y_msg_callback):
 
 def Z_Target_callback(z_msg_callback):
     Z_motor.target.data = -(z_msg_callback.data) + 0.000001
+    if Z_motor.target.data <= -1:
+        Z_motor.target.data = 0
     if (Ready.data == True) and (X_Busy.data == False):
         Z_motor.move_actuator()
 

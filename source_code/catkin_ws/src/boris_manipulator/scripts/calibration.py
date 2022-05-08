@@ -1,8 +1,12 @@
 #!/usr/bin/env python3
 import rospy
 import numpy as np
+from sensor_msgs.msg import Image
+from cv_bridge import CvBridge, CvBridgeError
 from std_msgs.msg import Bool, Float32, Int16
 from boris_manipulator.srv import localization, localizationResponse
+
+convert = CvBridge()
 
 X_distance0 = Float32()
 X_distance0.data = 0.0
@@ -33,12 +37,14 @@ Z_distance3 = Float32()
 Z_distance3.data = -10
 
 X_distance4 = Float32()
-X_distance4.data = 0.0#211.3
+X_distance4.data = 0.0
 Y_distance4 = Float32()
-Y_distance4.data = 0.0#1838.99 
+Y_distance4.data = 0.0
 Z_distance4 = Float32()
-Z_distance4.data = 0.0#-6.58470766e+02
+Z_distance4.data = 0.0
 
+calibration_complete = Bool()
+calibration_complete.data = False
 
 X_Busy = Bool()
 X_Busy.data = False
@@ -51,10 +57,13 @@ Ready = Bool()
 Ready.data = False
 
 rospy.wait_for_service('localization')
+
 laser_position_origin = localizationResponse()
 laser_position_1 = localizationResponse()
 laser_position_2 = localizationResponse()
 laser_position_3 = localizationResponse()
+
+
 
 def X_Busy_callback(x_Busy):
     X_Busy.data = x_Busy.data
@@ -76,6 +85,16 @@ def laser_localization():
 		# rate.sleep()
 	except rospy.ServiceException as e:
 		print("service call failed %s",e )
+
+def position_offset():	
+	try:	
+		get_position_offset_data = rospy.ServiceProxy('control_signals',control)
+		response = get_position_offset_data()
+		return response
+		# rate.sleep()
+	except rospy.ServiceException as e:
+		print("service call failed %s",e )
+
 
 def calibrate():
     while Ready.data != True:
@@ -168,34 +187,74 @@ def calibrate():
     third_point = np.array([[laser_position_3.position_x],[laser_position_3.position_y],[laser_position_3.position_z]])
     T = np.append(np.append(np.append(np.append((first_point - origin_point)/100,(second_point - origin_point)/100,axis = 1),(third_point - origin_point)/10,axis = 1),origin_point,axis=1),np.array([[0,0,0,1]]),axis = 0)
     Rot = T[:3,:3]
-    T_inv = np.append(np.append(Rot.T,-np.matmul(Rot.T,origin_point),axis=1),np.array([[0,0,0,1]]),axis = 0)
-    target_point = np.array([[211.3],[1838.99],[-6.58470766e+02],[1]])
-    transposed_data = np.matmul(T_inv,target_point)
-    X_distance4.data = transposed_data[0][0]
-    Y_distance4.data = transposed_data[1][0]
-    Z_distance4.data = transposed_data[2][0]
+    T_inv = np.identity(4) # np.append(np.append(Rot.T,-np.matmul(Rot.T,origin_point),axis=1),np.array([[0,0,0,1]]),axis = 0)
+    transformation_matrix = convert.cv2_to_imgmsg(T_inv)
+    pub_tranformation.publish(transformation_matrix)
     
-    pub_directionx.publish(X_distance4)
-    pub_directiony.publish(Y_distance4)
-    pub_directionz.publish(Z_distance4)
     return True
 
 
-rospy.Subscriber('X_BusyFlag',Bool,X_Busy_callback,queue_size = 10)
-rospy.Subscriber('Y_BusyFlag',Bool,Y_Busy_callback,queue_size = 10)
-rospy.Subscriber('Z_BusyFlag',Bool,Z_Busy_callback,queue_size = 10)
+rospy.Subscriber('/X_BusyFlag',Bool,X_Busy_callback,queue_size = 10)
+rospy.Subscriber('/Y_BusyFlag',Bool,Y_Busy_callback,queue_size = 10)
+rospy.Subscriber('/Z_BusyFlag',Bool,Z_Busy_callback,queue_size = 10)
 
-rospy.Subscriber('Setup_Complete',Bool,Setup_complete_callback,queue_size = 10)
+rospy.Subscriber('/Setup_Complete',Bool,Setup_complete_callback,queue_size = 10)
 
-pub_directionx = rospy.Publisher('X_Target', Float32, queue_size=10)
-pub_directiony = rospy.Publisher('Y_Target', Float32, queue_size=10)
-pub_directionz = rospy.Publisher('Z_Target', Float32, queue_size=10)
+pub_directionx = rospy.Publisher('/X_Target', Float32, queue_size=10)
+pub_directiony = rospy.Publisher('/Y_Target', Float32, queue_size=10)
+pub_directionz = rospy.Publisher('/Z_Target', Float32, queue_size=10)
+pub_calibration_complete = rospy.Publisher('/calibration_complete',Bool, queue_size=1)
+pub_tranformation = rospy.Publisher('/transformation', Image, queue_size = 1)
 
 
 rospy.init_node('calibration',anonymous = True)
 
-calibration_complete = calibrate()
-
+calibration_complete.data = calibrate()
+pub_calibration_complete.publish(calibration_complete)  
 rate = rospy.Rate(10)
 while not rospy.is_shutdown():
     rate.sleep()
+
+
+
+'''
+target_point = np.array([[119.75],[1667.65],[-674.75],[1]])
+transposed_data = np.matmul(T_inv,target_point)
+X_distance4.data = transposed_data[0][0]
+Y_distance4.data = transposed_data[1][0]
+Z_distance4.data = transposed_data[2][0]
+
+pub_directionx.publish(X_distance4)
+pub_directiony.publish(Y_distance4)
+pub_directionz.publish(Z_distance4)
+print(transposed_data)
+print(Rot.T)
+rospy.sleep(2)
+while ((X_Busy.data == True) or (Y_Busy.data == True)):
+    # print('moving') 
+    rospy.sleep(0.5)   
+print('done moving')
+rospy.sleep(2)
+
+position_offset_1 = position_offset()
+print(position_offset_1)
+# if(np.absolute(position_offset_1.distance_x) > 0.06 or np.absolute(position_offset_1.distance_y > 0.06) or np.absolute(position_offset_1.distance_z) > 0.06 ):
+position_offset_p1 = np.array([[position_offset_1.distance_x],[position_offset_1.distance_y],[-position_offset_1.distance_z]])
+new_pose = transposed_data[:3] + np.matmul(Rot.T,position_offset_p1)
+
+X_distance4.data = new_pose[0][0]
+Y_distance4.data = new_pose[1][0]
+Z_distance4.data = new_pose[2][0]
+
+pub_directionx.publish(X_distance4)
+pub_directiony.publish(Y_distance4)
+pub_directionz.publish(Z_distance4)
+
+while ((X_Busy.data == True) or (Y_Busy.data == True)):
+    # print('moving') 
+    rospy.sleep(0.5)   
+print('done moving')
+rospy.sleep(2)
+
+print('done correcting')
+'''
