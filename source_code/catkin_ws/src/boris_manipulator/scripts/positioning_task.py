@@ -50,7 +50,8 @@ def position_offset():
 		print("service call failed %s",e )
 
 def listen_transformation():
-    Transformation= np.asarray(convert.imgmsg_to_cv2(rospy.wait_for_message('/transformation',Image)))
+    Transformation= np.asarray(convert.imgmsg_to_cv2(rospy.wait_for_message('/transformation',Image, timeout = 120)))
+    print(Transformation,' received')
     return Transformation
 
 def ready_for_positioning():
@@ -65,18 +66,19 @@ def ready_for_positioning():
 
     return T_F
 
-def position(target):
-    transformation = ready_for_positioning()
+def position(target,transformation):
+    # transformation = ready_for_positioning()
     initial_correction = np.matmul(transformation,target)
     X_distance0.data = initial_correction[0][0]
     Y_distance0.data = initial_correction[1][0]
-    Z_distance0.data = initial_correction[2][0]
+    Z_distance0.data = -initial_correction[2][0]
+    print(Z_distance0.data)
     pub_directionx.publish(X_distance0)
     pub_directiony.publish(Y_distance0)
     pub_directionz.publish(Z_distance0)
-    rospy.sleep(1)
+    rospy.sleep(2)
     
-    while ((X_Busy.data == True) or (Y_Busy.data == True)):
+    while ((X_Busy.data == True) or (Y_Busy.data == True) or (Z_Busy.data == True)):
         # print('moving') 
         rospy.sleep(0.5)   
     print('done with initial correction')
@@ -85,31 +87,45 @@ def position(target):
     print('Now checking for any residual positioning error')
     position_offset_1 = position_offset()
     if(np.absolute(position_offset_1.distance_x)>0.06 or np.absolute(position_offset_1.distance_y)>0.06 or np.absolute(position_offset_1.distance_z)>0.06):
-        position_offset_p1 = np.array([[position_offset_1.distance_x],[position_offset_1.distance_y],[-position_offset_1.distance_z]])
-        fine_correction = initial_correction[:3] + np.matmul(Rot.T,position_offset_p1)
+        position_offset_p1 = np.array([[position_offset_1.distance_x],[position_offset_1.distance_y],[position_offset_1.distance_z]])
+        Rot = transformation[:3,:3]
+        fine_correction = initial_correction[:3] + np.matmul(Rot,position_offset_p1)
         X_distance0.data = fine_correction[0][0]
         Y_distance0.data = fine_correction[1][0]
-        Z_distance0.data = fine_correction[2][0]
+        Z_distance0.data = -fine_correction[2][0]
+        print(fine_correction[2][0])
         pub_directionx.publish(X_distance0)
         pub_directiony.publish(Y_distance0)
         pub_directionz.publish(Z_distance0) 
         while ((X_Busy.data == True) or (Y_Busy.data == True)):
         # print('moving') 
-            rospy.sleep(0.5)   
+            rospy.sleep(0.5)    
         print('done with fine correction')
         rospy.sleep(2)
         position_offset_1 = position_offset()
+        # add the positioning for offset with the pen
+    #     # if position_offset_1.distance_x < 0.06 and position_offset_1.distance_y < 0.06
         # remove the following 3 lines when testing
-        position_offset_1.distance_x = 0.0
-        position_offset_1.distance_y = 0.0
-        position_offset_1.distance_z = 0.0
+        # position_offset_1.distance_x = 0.0
+        # position_offset_1.distance_y = 0.0
+        # position_offset_1.distance_z = 0.0
 
     print('completed positioning')
     return True
            
 def task():
-    target_point = np.array([[150],[150],[0],[1]])
-    a = position(target_point)
+    transformation = ready_for_positioning()
+    targets = open('/home/vinay/master_thesis/Boris_manipulator/source_code/catkin_ws/src/boris_manipulator/scripts/targets.txt','r').readlines() 
+    targets.reverse()
+    print('There are ',len(targets),' targets in the task list')
+    while(len(targets)>0):
+        rospy.sleep(5)
+        target = targets.pop()
+        coordinates = target.split(',')
+        target_point = np.array([[float(coordinates[1])],[float(coordinates[2])],[float(coordinates[3])],[1]])
+        a = position(target_point,transformation)
+
+    print('Done with all points in the task list')
 
 rospy.init_node('positioning_task',anonymous = True)
 

@@ -47,17 +47,22 @@ def Setup_complete_callback(msg_callback):
 
 def X_Target_callback(x_msg_callback):
     X_motor.target.data = 300.0 - x_msg_callback.data + 0.000001
+    if X_motor.target.data <= 0:
+        X_motor.target.data = 0
     if (Ready.data == True) and (X_Busy.data == False):
         X_motor.move_actuator()
 
 def Y_Target_callback(y_msg_callback):
     Y_motor.target.data = y_msg_callback.data + 0.000001
+    if Y_motor.target.data <= 0:
+        Y_motor.target.data = 0
     if (Ready.data == True) and (X_Busy.data == False):
         Y_motor.move_actuator()
 
 def Z_Target_callback(z_msg_callback):
     Z_motor.target.data = -(z_msg_callback.data) + 0.000001
-    if Z_motor.target.data <= -1:
+    # print(z_msg_callback.data)
+    if Z_motor.target.data <= 0:
         Z_motor.target.data = 0
     if (Ready.data == True) and (X_Busy.data == False):
         Z_motor.move_actuator()
@@ -85,6 +90,7 @@ while not rospy.is_shutdown():
     X_motor.get_current_position()
     Y_motor.get_current_position()
     Z_motor.get_current_position()
+    X_motor.current_position.data = 300.0 - X_motor.current_position.data
     pub_current_position_x.publish(X_motor.current_position)
     pub_current_position_y.publish(Y_motor.current_position)
     pub_current_position_z.publish(Z_motor.current_position)

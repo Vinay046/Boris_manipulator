@@ -85,6 +85,7 @@ while not rospy.is_shutdown():
     X_motor.get_current_position()
     Y_motor.get_current_position()
     Z_motor.get_current_position()
+    X_motor.current_position.data = 300.0 - X_motor.current_position.data
     pub_current_position_x.publish(X_motor.current_position)
     pub_current_position_y.publish(Y_motor.current_position)
     pub_current_position_z.publish(Z_motor.current_position)

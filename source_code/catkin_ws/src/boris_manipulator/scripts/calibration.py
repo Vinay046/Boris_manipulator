@@ -8,6 +8,8 @@ from boris_manipulator.srv import localization, localizationResponse
 
 convert = CvBridge()
 
+# transformation_matrix = Image()
+
 X_distance0 = Float32()
 X_distance0.data = 0.0
 Y_distance0 = Float32()
@@ -187,11 +189,9 @@ def calibrate():
     third_point = np.array([[laser_position_3.position_x],[laser_position_3.position_y],[laser_position_3.position_z]])
     T = np.append(np.append(np.append(np.append((first_point - origin_point)/100,(second_point - origin_point)/100,axis = 1),(third_point - origin_point)/10,axis = 1),origin_point,axis=1),np.array([[0,0,0,1]]),axis = 0)
     Rot = T[:3,:3]
-    T_inv = np.identity(4) # np.append(np.append(Rot.T,-np.matmul(Rot.T,origin_point),axis=1),np.array([[0,0,0,1]]),axis = 0)
+    T_inv = np.append(np.append(Rot.T,-np.matmul(Rot.T,origin_point),axis=1),np.array([[0,0,0,1]]),axis = 0) #np.identity(4) 
     transformation_matrix = convert.cv2_to_imgmsg(T_inv)
-    pub_tranformation.publish(transformation_matrix)
-    
-    return True
+    return True, transformation_matrix
 
 
 rospy.Subscriber('/X_BusyFlag',Bool,X_Busy_callback,queue_size = 10)
@@ -209,10 +209,12 @@ pub_tranformation = rospy.Publisher('/transformation', Image, queue_size = 1)
 
 rospy.init_node('calibration',anonymous = True)
 
-calibration_complete.data = calibrate()
-pub_calibration_complete.publish(calibration_complete)  
+calibration_complete.data, transformation_matrix = calibrate()
+pub_calibration_complete.publish(calibration_complete)
+# pub_tranformation.publish(transformation_matrix)
 rate = rospy.Rate(10)
 while not rospy.is_shutdown():
+    pub_tranformation.publish(transformation_matrix)
     rate.sleep()
 
 

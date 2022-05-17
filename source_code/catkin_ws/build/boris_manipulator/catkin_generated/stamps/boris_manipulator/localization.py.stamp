@@ -61,8 +61,8 @@ def control_callback(req):
         # response.distance_x = 1
         # response.distance_y = 2
         # response.distance_z = 3
-        response.distance_x = 0.9 # float(controlsSplit[1])
-        response.distance_y = 0.2 # float(controlsSplit[3])
+        response.distance_x = 0 # float(controlsSplit[1])
+        response.distance_y = 0 # float(controlsSplit[3])
         response.distance_z = 0 # float(controlsSplit[5])
 
     return response
