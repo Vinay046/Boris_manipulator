@@ -46,7 +46,7 @@ def Setup_complete_callback(msg_callback):
     Ready.data = msg_callback.data
 
 def X_Target_callback(x_msg_callback):
-    X_motor.target.data = 300.0 - x_msg_callback.data + 0.000001
+    X_motor.target.data = 300.1 - x_msg_callback.data + 0.000001
     if X_motor.target.data <= 0:
         X_motor.target.data = 0
     if (Ready.data == True) and (X_Busy.data == False):

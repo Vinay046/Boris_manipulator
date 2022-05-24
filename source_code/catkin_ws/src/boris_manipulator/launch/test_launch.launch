@@ -1,4 +1,6 @@
 <launch>
-  <node name="multiplier_service" pkg="boris_manipulator" type="server.py" output ="screen"/>
-  <node name="client_node" pkg="boris_manipulator" type="client.py" output ="screen"/>
+  <node name="control_flags" pkg="boris_manipulator" type="control_flags.py" output="screen"/>
+  <node name="setup_node" pkg="boris_manipulator" type="setup.py" output="screen"/>
+  <node name="Robot_control" pkg="boris_manipulator" type="robot_control.py" output="screen"/>
+  <node name="test_node" pkg="boris_manipulator" type="test_node.py" output="screen"/>
 </launch>

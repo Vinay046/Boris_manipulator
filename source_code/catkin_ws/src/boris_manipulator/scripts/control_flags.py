@@ -8,6 +8,9 @@ from pymodbus.client.sync import ModbusTcpClient
 client = ModbusTcpClient('192.168.1.7')
 from std_msgs.msg import Bool
 
+down = Bool()
+down.data = False
+
 class Motor:
     def __init__(self, axis):
         self.SVON = Bool()
@@ -22,6 +25,7 @@ class Motor:
         self.BusyFlag.data = False
         self.SetOnFlag.data = False
         client.write_coil(self.axis+8194,self.SVON.data)
+
     def set_SVON(self):
         client.write_coil(self.axis+8194,self.SVON.data) # write the correct function call to write to the flag
 
@@ -36,7 +40,7 @@ class Motor:
 
     def get_SetOnFlag_status(self):
         self.SetOnFlag.data = client.read_coils(self.axis+8206).bits[0] # write the correct function call to read the flag register and return it
-
+# 8209 is available for the contact switch
 X_motor = Motor(0)
 Y_motor = Motor(1)
 Z_motor = Motor(2)
@@ -100,6 +104,8 @@ pub_seton_x = rospy.Publisher('X_SetOnFlag', Bool, queue_size=10)
 pub_seton_y = rospy.Publisher('Y_SetOnFlag', Bool, queue_size=10)
 pub_seton_z = rospy.Publisher('Z_SetOnFlag', Bool, queue_size=10)
 
+pub_down = rospy.Publisher('down', Bool, queue_size=10)
+
 rate = rospy.Rate(100) # hertz
 
 while not rospy.is_shutdown():
@@ -109,11 +115,12 @@ while not rospy.is_shutdown():
     X_motor.get_SetOnFlag_status()
     Y_motor.get_SetOnFlag_status()
     Z_motor.get_SetOnFlag_status()
+    down.data = client.read_coils(8209).bits[0]
+    pub_down.publish(down)
     pub_busy_x.publish(X_motor.BusyFlag)
     pub_busy_y.publish(Y_motor.BusyFlag)
     pub_busy_z.publish(Z_motor.BusyFlag)
     pub_seton_x.publish(X_motor.SetOnFlag)
     pub_seton_y.publish(Y_motor.SetOnFlag)
     pub_seton_z.publish(Z_motor.SetOnFlag)
-
     rate.sleep()

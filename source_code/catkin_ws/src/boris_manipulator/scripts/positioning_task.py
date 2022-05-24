@@ -71,8 +71,8 @@ def position(target,transformation):
     initial_correction = np.matmul(transformation,target)
     X_distance0.data = initial_correction[0][0]
     Y_distance0.data = initial_correction[1][0]
-    Z_distance0.data = -initial_correction[2][0]
-    print(Z_distance0.data)
+    Z_distance0.data = 0
+    print(X_distance0.data)
     pub_directionx.publish(X_distance0)
     pub_directiony.publish(Y_distance0)
     pub_directionz.publish(Z_distance0)
@@ -93,17 +93,21 @@ def position(target,transformation):
         X_distance0.data = fine_correction[0][0]
         Y_distance0.data = fine_correction[1][0]
         Z_distance0.data = -fine_correction[2][0]
+        if Z_distance0.data < -35:
+            Z_distance0.data = -35
         print(fine_correction[2][0])
         pub_directionx.publish(X_distance0)
         pub_directiony.publish(Y_distance0)
         pub_directionz.publish(Z_distance0) 
-        while ((X_Busy.data == True) or (Y_Busy.data == True)):
+        rospy.sleep(1)
+        while ((X_Busy.data == True) or (Y_Busy.data == True) or (Z_Busy.data == True)):
         # print('moving') 
             rospy.sleep(0.5)    
         print('done with fine correction')
         rospy.sleep(2)
         position_offset_1 = position_offset()
-        # add the positioning for offset with the pen
+        print(position_offset_1.distance_z)
+        # add the positioning for offset with the pen 36.36 mm along robot X axis radius of the reflector is 19.05 mm. distance between floor and lowest point before making a point 47.75mm
     #     # if position_offset_1.distance_x < 0.06 and position_offset_1.distance_y < 0.06
         # remove the following 3 lines when testing
         # position_offset_1.distance_x = 0.0
@@ -111,6 +115,31 @@ def position(target,transformation):
         # position_offset_1.distance_z = 0.0
 
     print('completed positioning')
+
+    # print('starting offset')
+    # X_distance0.data -= 36.36
+    # pub_directionx.publish(X_distance0)
+    # rospy.sleep(1)
+    # while ((X_Busy.data == True)):
+    #     # print('moving') 
+    #         rospy.sleep(0.5)
+    
+    # print('done with X offset and going down')
+
+    # Z_distance0.data = -38.5
+    # pub_directionz.publish(Z_distance0)
+    # rospy.sleep(1)
+    # while ((Z_Busy.data == True)):
+    #     # print('moving') 
+    #         rospy.sleep(0.5)
+    # # rospy.sleep(1)
+    # print('done marking the point and going up')
+    # Z_distance0.data = -35
+    # pub_directionz.publish(Z_distance0)
+    # rospy.sleep(1)
+    # while ((Z_Busy.data == True)):
+    #     # print('moving') 
+    #         rospy.sleep(0.5)
     return True
            
 def task():
