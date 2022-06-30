@@ -1,0 +1,172 @@
+\documentclass{LTHthesis}
+%\documentclass[svenska]{LTHthesis} % Om rapporten är på svenska, så är det
+                                    % den här raden som skall användas, och 
+                                    % den föregående skall tas bort.
+\usepackage[T1]{fontenc}
+\usepackage[colorinlistoftodos]{todonotes}
+\usepackage[utf8]{inputenc}  %% Comment if you are not using utf8
+\usepackage{mathptmx, helvet}
+\usepackage{graphicx}
+\addbibresource{mybib.bib}  %%  Comment if you don't want to use bibtex.
+
+\begin{document}
+\begin{titlepages}
+\author{Vinay Venkanagoud Patil}
+\title{High precision Robotic Manipulator for\\ Bluelining at MAX IV}
+\year{2022}
+\month{June}
+\TFRT{9999}  %%  You will get the number from the department.
+\printer{Media-Tryck}  %% Probably. You may get other information from the department.
+\end{titlepages}
+\chapter*{Abstract}
+MAX IV is a synchrotron facility currently running 14 beamlines hosting about 1000 users per year. It is one of the best of its kind and is at the forefront of synchrotron science. To have a beamline functional, the equipment used in a beamline needs to be placed in the workspace with high precision. In the current setup, this is supported by blue lining, a technique to transfer the points from the 3D CAD diagram to the real space. This is done by marking points on the floor at places where the equipment needs to be placed. The position measurement is provided by a Leica Laser Tracker. The precision expected in a Blue lining task is about 60 microns. The manual process of marking these points is a tedious and time-consuming task for the measurement team. Automating this task would ease the work for the measurement team and free up time and resources for them. Not to mention the reduced back pain.
+
+
+Large-scale infrastructures, such as the MAX IV Laboratory, rely on technology that must conduct extremely accurate operations. The position of the components in space has a significant impact on their performance. The purpose of this Master's thesis is to create a sophisticated robot that will increase the precision of equipment positioning well beyond what is now possible. MAX IV, as well as its colleagues and consumers from academia and business, will profit tremendously from the project's outcomes. In addition, the robot can be employed in other similar locations and has the potential to be used in industrial settings.
+
+\chapter*{Acknowledgements}
+This Master's thesis was conducted in 2022 at the department of Automatic Control, Lund University and Max IV Laboratory. 
+
+I would like to thank Anders Robertsson and Gunnar Lindstedt, academic supervisors for their support and their faith in my work. I would also like to extend my gratitude towards my teammates from the project courses who helped me gain the knowledge and confidence I needed to bring this thesis to a state of completion. And last but not least, Alina Andersson, research engineer at MAXIV, for her constant support and encouragement through out the thesis.
+\begin{flushleft}
+\textbf{Sincerely,}
+
+Vinay Venkanagoud Patil
+
+\end{flushleft}
+\tableofcontents
+\chapter{Introduction}
+    Equipment installation in synchrotron dictates the quality and results of experiments conducted. These experiments conducted at MAX IV, are initially designed in a CAD software which gives the measurement team an idea on how the beamline needs to be set up. The team project these CAD diagrams onto the MAX IV beam lines. MAX IV is equipped with a large network of measured points through out the building that helps the Measurement team keep track of the relative positions of the new equipment with respect to the whole structure. Aforementioned measured points are kept track of by regularly measuring them to update the network. 
+    
+    The goal of the measurement team is to place the new equipment in the right positions using the network of known points as reference. Since the experiments are designed around using a very small beam of laser, the positional accuracy dictates the quality of results. 
+    % add some reference
+    An error of 60 microns is considered tolerable but the team always aims to improve the precision as much as possible. 
+    
+    The measurement is facilitated by a high precision Leica Laser tracker. The Leica Laser tracker comes equipped with a Laser and a set of reflectors that have a 60 degree field of vision. A PC, with a software, Spatial Analyzer is used to visualize the measurement. Most laser trackers can detect up to 15 microns displacement of the reflector from a distance of 1 m. 
+    \section{Background} \label{backgroud}
+        The SAM (Survey, Alignment and Measurement team) is responsible to align and place the equipment at the desired positions in the beamline. The initial step of equipment installation is \emph{Bluelining}. This is when the SAM team projects all the mounting points on the floor. Here they use the reference network that already exists.
+        
+        Traditionally, this is done by positioning the reflector placed on the floor using a reflector seat. The position of the reflector is fine-tuned while checking the computer screen set up to display the offset from the required position. When the offset is acceptable, the reflector is removed from the reflector seat that allow the user to mark the point on the floor using a marker. This task is tedious, monotonous and time-consuming. Marking as few of 30 points on the floor can easily take house and involves sitting uncomfortably on the concrete floors. 
+        
+        This current manual process process poses several disadvantages that are being addressed in this thesis.
+
+        \begin{itemize}
+            \item The process is time-consuming
+            \item Users need to work on the floor in a very uncomfortable manner
+            \item Prone to human error while marking the point on the floor
+            \item Needs assistance from another person other than the user to keep track of data stream of measurements
+        \end{itemize}
+    \section{Problem Formulation and goals}
+        An important aspect when doing high precision positioning lies in the robot hardware, the control algorithm and the brains that control the robot. The goal of this thesis is to use the feedback from the Leica laser tracker previously used for bluelining and controlling the robot to position its end effector closest to the desired position. In future, a 3-dof omnidirectional mobile robot will be added to the robot as a base to enable the robot to function with a larger workspace. 
+    % \section{Goals of the Master's thesis}
+    %     The purpose of this thesis is to develop a floor marking robot, that can automate the most parts of the Bluelining task. Taking the precision requirements of the task in mind, highly precise robotic solution is to be used. 
+    \section{Delimitation}
+    % Ask Alina what can be written
+        
+    \section{The structure of the report}
+        Chapter 2 covers the theoretical aspects that encapsulate the thesis and the methodologies used are presented in Chapter 3. Results in Chapter 4 are categorised into system repeatability and bluelining performance. Discussions on the results can be found in Chapter 5 and Chapter 6 consists the conclusions.
+\chapter{Theory}
+    \section{Blue-Lining} \label{bluelining}
+        The substantial progress in the field of particle accelerators has made it feasible to make discoveries in comprehending the origins of the universe, elements of matter, medical research, and so on. For effective operation, all particle accelerators, regardless of their scientific use, require exact positioning of numerous components. In particle accelerators, survey and alignment operations involve precisely locating multiple components within micrometric tolerances across the workspace in relation to a reference point set by beam physicists in any plane. 
+        
+        Before installation of components along a beam-line, the CAD model of the setup is projected on the workspace and positional data of all equipment is generated to meet the requirement of relative alignment along the horizontal plane. This provides the Alignment team with the coordinates of the footprints of all the components on the floor. The team then uses a laser tracker to aid the marking of these points on the floor.
+    \section{Laser Tracking} \label{laser tracking}
+        Laser tracking methods were previously employed in performance measurement of Industrial Robots at the National Institute of Standards and Technology back in 1986 \todo{add referecnce here}.Since then there has been an extensive growth in need for high precision measurement in places such as particle accelerators. Positioning of components in particle accelerators, like many other practical applications of precise positioning, requires 3D positioning. These positioning requirements are fullfilled using a portable coordinate measuremnent device. The Laser tracker is one of the many such portable measurement devices which uses a reflector \todo[]{add image for reflector here}. The Leica Laser tracker \todo[]{add image of the Leica laser} has a unit that emits a laser beam and uses a tracking mechanism to follow the reflector when its moved. In order to obtain the 3D cartesian coordinates, the reflector is moved to the points that need measurement.
+        
+        The Leica Laser connects via Ethernet to a computer that obtains the positional data of the reflector from the Laser tracker and transmits it over UDP using the Spatial Analyzer application. The IP configuration needs to be verified before the operation of the Leica Laser tracker. \todo[]{add more stuff about Laser tracking}
+    \section{Cartesian Robots}\label{cartesian robots}
+        Robots can be classified in many ways based on their mechanical structure.
+        \begin{itemize}
+            \item Linear Robots / Cartesian Robots
+            \item SCARA
+            \item Articulated Robot
+            \item Parallel Robots
+            \item Cylindrical Robots
+        \end{itemize}
+        The type of task and the working environment decides the type of robot used.
+        \subparagraph*{}
+            A Cartesian system moves along 3 orthogonal axes: X, Y and Z. The points in this system are represented using 3 values $(x,y,z)$. A Cartesian robot as the name suggests uses the Cartesian frame of reference and whose principle axes of control are linear (i.e. they move along a straight line rather than rotate). This mechanical structure, among other things, makes the robot control arm more straightforward.
+            \subsection{Coordinate Transformations}
+        \section{Robot Operating System} \label{ROS}%everything on ROS is written from ROS.org
+        % ROS that stands for Robot Operating system is an open-source robotics middle-ware. Although it is not an actual operating system but a collection of software frameworks for robot software development. It provides services designed for a heterogeneous computer cluster such as hardware abstraction, low-level device control, implementation of commonly used functionality, message-passing between processes, and package management. The operating processes in ROS can be represented using a ROS graph where the operations happen in the nodes that may receive, send or multiplex sensor data and other messages such as control signals and set points. The other features that ROS provides is suite of debugging tools that enable us to plot data from the ROS topics in real time and check for inconsistencies.
+        Robot Operating System or ROS is a free and open source robotic middleware that defines the components, interfaces and tools for building advanced robots. It provides services designed for a heterogeneous cluster such as hardware abstraction, low-level device control, implementation of common functionality, message passing between processes and package management. ROS helps users develop and connect the actuators, sensors and the control system with ROS tools such as topics and messages. These messages can be recorded using ROS Bags and logs for easy testing, training and quality assurance. Messages can be sent to various teleopration tools such as Gazebo where the users can work on simulated robots with ease. ROS's modular architecture allows users to build interfaces for just any component with a software interface.
+
+        \subsection{ROS Nodes} % add the referecnce to ROS.org
+        A ROS Node is a \emph{process} that performs computations.  Nodes are combined together into a graph and communicate with one another using streaming topics, and services. These nodes are meant to operate at a fine-grained scale; a robot control system will usually comprise many nodes. For example, one node controls a laser range-finder, one Node controls the robot's wheel motors, one node performs localization, one node performs path planning, one node provides a graphical view of the system, and so on. 
+
+        The use of ROS Nodes while programming a robot has several benefits. There is additional \emph{fault tolerance} as crashes are isolated to individual nodes. Code complexity is reduced in comparison to monolithic systems. Implementation details are also well hidden as the nodes expose a minimal API to the rest of the graph and alternate implementations, even in other programming languages, can easily be substituted.
+            \subsubsection{Topics}
+            Topics are named buses over which ROS Nodes exchange messages. In general, nodes are not aware of who they are communicating with. The Nodes are interested in the data from a certain topic they subscribe to. And similarly, the nodes that generate data are interested in topics they publish to. There can be multiple publishers and subscribers to a topic. 
+
+            Each type of each Topic is dictated by the type of message it is used to transport. A publisher can only publish a matching type of message to a topic and a subscriber can only receive a message with a matching type. Additionally, ROS topics come with semantics that allow the users to keep a track of all the topics in the system and also monitor the messages through the topics. 
+            % write about type of topics done!!
+            Ros Nodes can be categorised into:
+            \\
+            \subsubsection{Publishers}
+                Publishers are nodes that are used to publish ROS messages to the corresponding topics. 
+            \\
+            \subsubsection{Subscribers}
+                Subscribers are nodes that are used to subscribe to ROS topics. Subscribers obtain the data from the topic they subscribe to when a publisher publishes a new message to the topic.
+            \\
+            \subsection{ROS Services}
+                Although the publish/subscribe model is a fairly flexible communication architecture, its many-to-many one-way transport is not ideal for Remote Procedure Call request/response interactions, which are common in distributed systems. Request/Response is done via a ROS Service, which consists of 2 messages: one for the request and one for the response. The ROS Node that offers the service is registered using a string and the client ROS node that calls for the service sends a request message of the request message type and awaits a response of the reply message type. 
+    \section{PLC}
+        \todo[]{add reference to the Mitsubishi PLC and Ethernet module that I interfaced and talk about PLC}
+
+        \subsection{PLC Communication}
+            \subsubsection{ModBus} \label{modbus}
+                \todo[]{Talk about the communication with PLC from the PC}
+            \subsubsection{Ethernet IP} \label{ethernetip}
+                \todo[]{Talk about how the SMC drives are interfaced}
+\chapter{Methodology}
+    Here we will discuss the various parts of the implementation.
+    \section{Understanding the task}
+    In this section we close the loop between the multiple components of the robot. The robotic system can be depicted in the figure \todo[]{add the control loop picture here}
+
+    The system consists of 3 subsystems i.e. a Computer that generates the control signals, a PLC that acts as communication layer between the Computer and the actuators and the sensory feedback that is obtained from the Laser tracker. The software implementation for these subsystems can be broken down as follows:
+    \begin{itemize}
+        \item Communication between Laser tracker and Computer.
+        \item Communication between Computer and PLC.
+        \item Communication between PLC and Servo Driver.
+        \item Initialization and Calibration.
+        \item Positioning task.
+        \item Marking the floor.
+    \end{itemize}
+
+
+    \section{Communication between Laser tracker and Computer}
+    As previously discussed in section \ref{laser tracking} the positional data of the Leica reflector is transmitted using UDP packets. Two types of positional information is extracted as part of the feedback loop which are: \begin{itemize}
+        \item Global Position of tracker 
+        \item Distance of tracker from the Target 
+    \end{itemize}
+    
+    The computer receives these sensory data packets over 2 different UDP ports. 2 ROS services are assigned to acquire these UDP packets and respond with corresponding information upon request. 
+        \subsection{Global Position of tracker}
+            Upon initialization of the Laser tracker, a coordinate frame needs to be defined. The tracker will then locate the reflector \todo[]{refer the reflector image here} with respect to this coordinate frame. The global position of the tracker is used to perform the calibration sequence on the robot and also allows the robot to obtain the linear transformation between the Robot frame and the Laser tracker frame.
+        \subsection{Distance of tracker from the Target}
+            We know from section \ref{laser tracking} that the laser tracker has the ability to track the position of a moving reflector. The laser tracker also has the ability to transmit distance of the reflector from a given target coordinate in the working frame. This data-stream is used to obtain the offset while performing the fine positional corrections.
+        \subsection{Measurement sampling}
+            The Laser tracker is a one the best equipments to localize a stationary point. It can detect motions of about 15 microns from a distance of 1 meter. However, it is not one of the best when it comes to tracking a moving target. This is due to the fact that the laser needs to be pointing at the center of the reflector \todo[]{add reference to the reflector image here.}. The laser tracker is makes small adjustments in order to focus the light at the center of the reflector. While performing such small adjustments, the real time position estimation varies a lot and renders the measurement data from the laser tracker unreliable. 
+
+            To tackle this, it was important to sample data when the tracker was absolutely stable. So the measurement was sampled only at times when the robot was stationary.
+    \section{Communication between Computer and PLC}
+        As previously discussed in section \ref{modbus}, the Computer communicates with the PLC over ModBus. The PLC being used in the robot can support upto 8 Modbus clients. This implies that it is possible to use 8 ROS Nodes on the computer that can connect to PLC and read and write registers and coils.
+    \section{Communication between PLC and Servo Driver}
+    \section{Initialization and Calibration}
+    \section{Positioning task}
+    \section{Marking the floor}
+\chapter{Results}
+    \section{System}
+        % \todo[]{write about your testing procedures}
+    \section{Performance}
+\chapter{Discussion}
+\chapter{Conclusion}
+
+\printbibliography  
+%% Comment if you don't want to use bibtex
+%  \bibliographystyle{plain}
+%  \bibliography{bibliography}
+
+\end{document}
+
+

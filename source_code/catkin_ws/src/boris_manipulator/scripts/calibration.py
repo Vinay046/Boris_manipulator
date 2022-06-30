@@ -114,11 +114,11 @@ def calibrate():
     pub_directionz.publish(Z_distance0)
     rospy.sleep(1)
     
-    while (X_Busy.data == True):
+    while ((X_Busy.data == True) or (Y_Busy.data == True) or (Z_Busy.data == True)):
         # print('moving') 
         rospy.sleep(0.5)   
     print('done moving')
-    rospy.sleep(2)
+    rospy.sleep(5)
     laser_position_origin = laser_localization()
     print(laser_position_origin)
     rospy.sleep(2)
@@ -134,7 +134,7 @@ def calibrate():
         # print('moving') 
         rospy.sleep(0.5) 
     print('done moving')
-    rospy.sleep(2)
+    rospy.sleep(5)
     laser_position_3 = laser_localization()
     print(laser_position_3)
     rospy.sleep(2)
@@ -150,7 +150,7 @@ def calibrate():
         # print('moving') 
         rospy.sleep(0.5) 
     print('done moving')
-    rospy.sleep(2)
+    rospy.sleep(5)
     laser_position_1 = laser_localization()
     print(laser_position_1)
     rospy.sleep(2)
@@ -166,21 +166,21 @@ def calibrate():
         # print('moving') 
         rospy.sleep(0.5)   
     print('done moving')
-    rospy.sleep(2)
+    rospy.sleep(5)
     laser_position_2 = laser_localization()
     print(laser_position_2)
     rospy.sleep(2)
 
     # exiting by moving the actuator back to origin
-    pub_directionx.publish(X_distance0)
-    pub_directiony.publish(Y_distance0)
-    pub_directionz.publish(Z_distance0)
-    rospy.sleep(1)
+    # pub_directionx.publish(X_distance0)
+    # pub_directiony.publish(Y_distance0)
+    # pub_directionz.publish(Z_distance0)
+    # rospy.sleep(1)
 
-    while (Y_Busy.data == True):
-        # print('moving') 
-        rospy.sleep(0.5)   
-    print('done moving')
+    # while (Y_Busy.data == True):
+    #     # print('moving') 
+    #     rospy.sleep(0.5)   
+    # print('done moving')
     rospy.sleep(2)
 
     origin_point = np.array([[laser_position_origin.position_x],[laser_position_origin.position_y],[laser_position_origin.position_z]])

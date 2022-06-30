@@ -46,7 +46,7 @@ def Setup_complete_callback(msg_callback):
     Ready.data = msg_callback.data
 
 def X_Target_callback(x_msg_callback):
-    X_motor.target.data = 300.1 - x_msg_callback.data + 0.000001
+    X_motor.target.data = 300.0 - x_msg_callback.data + 0.000001
     if X_motor.target.data <= 0:
         X_motor.target.data = 0
     if (Ready.data == True) and (X_Busy.data == False):
@@ -64,6 +64,8 @@ def Z_Target_callback(z_msg_callback):
     # print(z_msg_callback.data)
     if Z_motor.target.data <= 0:
         Z_motor.target.data = 0
+    # if Z_motor.target.data > 40:
+    #     Z_motor.target.data = 35
     if (Ready.data == True) and (X_Busy.data == False):
         Z_motor.move_actuator()
 
